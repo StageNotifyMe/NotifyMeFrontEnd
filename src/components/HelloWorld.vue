@@ -1,6 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <img alt="Quasar logo" src="../assets/logo.png">
+    <q-btn color="secondary" label="Secondary" />
   </q-page>
 </template>
 
@@ -9,6 +10,12 @@
 
 <script>
 export default {
-  name: 'HelloWorld'
+  name: 'HelloWorld',
+
+  methods:{
+    redirectToAuth(){
+      
+    }
+  }
 }
 </script>
