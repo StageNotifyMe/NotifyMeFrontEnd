@@ -69,8 +69,18 @@ export default {
       authRest.getToken(this.username, this.password)
       .then(result=>{
         console.log(result.data.access_token)
-      })
+    if (result.status == 200) {
+      let d = new Date();
+      d.setTime(d.getTime() + 1 * 1 * 60 * 60 * 1000);
+      let expires = "expires=" + d.toUTCString();
+      document.cookie =
+        "access_token=" + result.data.access_token + ";" + expires + ";path=/";
     }
-  },
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+    }
+    }
 }
 </script>
