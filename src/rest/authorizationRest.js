@@ -9,5 +9,5 @@ export default {
     },
     register(registration){
         return axios.post(RESOURCE_PATH+"register",registration)
-    }
+    },
 }

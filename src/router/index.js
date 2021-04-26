@@ -1,48 +1,164 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import cookieFun from '../javascript/cookieFunctions'
 
 import Home from "../views/Home"
 import Login from "../views/Login"
 import Register from "../views/Register"
+import Unauthorized from "../views/Unauthorized"
+import WelcomeUser from "../views/welcome/WelcomeUser.vue"
+import WelcomeAdmin from "../views/welcome/WelcomeAdmin.vue"
+import WelcomeOmanager from "../views/welcome/WelcomeOmanager.vue"
+import WelcomeVmanager from "../views/welcome/WelcomeVmanager.vue"
+import WelcomeLmanager from "../views/welcome/WelcomeLmanager.vue"
+
+
 
 Vue.use(VueRouter)
 
 const routes = [
-    {
-        path: '/',
-        name: 'Home',
-        component: Home
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
+  {
+    path: '/unauthorized',
+    name: 'Unauthorized',
+    component: Unauthorized
+  },
+
+  {
+    path: '/user',
+    component: WelcomeUser,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('user')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
     },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
+    children: [
+      {
+        path: 'welcome',
+        component: WelcomeUser
+      }
+    ]
+  },
+
+
+  {
+    path: '/admin',
+    component: WelcomeAdmin,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('admin')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
     },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register
+    children: [
+      {
+        path: 'welcome',
+        component: WelcomeAdmin
+      }
+    ]
+  },
+
+  {
+    path: '/omanager',
+    component: WelcomeOmanager,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('organisation_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
     },
+    children: [
+      {
+        path: 'welcome',
+        component: WelcomeOmanager
+      }
+    ]
+  },
+
+  {
+    path: '/vmanager',
+    component: WelcomeVmanager,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('venue_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+    children: [
+      {
+        path: 'welcome',
+        component: WelcomeVmanager
+      }
+    ]
+  },
+
+  {
+    path: '/lmanager',
+    component: WelcomeLmanager,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('line_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+    children: [
+      {
+        path: 'welcome',
+        component: WelcomeLmanager
+      }
+    ]
+  },
+
+  //redirecting for when full token name is used in route
+  {
+    path: '/line_manager/:location', redirect: '/lmanager/:location'
+  },
+  {
+    path: '/organisation_manager/:location', redirect: '/omanager/:location'
+  },
+  {
+    path: '/venue_manager/:location', redirect: '/vmanager/:location'
+  },
 ]
 
 const router = new VueRouter({
-    routes
+  routes
 })
 
 
 //SECURED ROUTING
-/*router.beforeEach((to, from, next) => {
-    const publicPages = ['/login', '/register','/requestPasswordReset','/resetPassword','/activateAccount'];
-    const authRequired = !publicPages.includes(to.path);
-    const loggedIn = localStorage.getItem('user');
-  
-    // trying to access a restricted page + not logged in
-    // redirect to login page
-    if (authRequired && !loggedIn) {
-      next('/login');
-    } else {
-      next();
-    }
-  });
-  */
-  export default router
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/', '/login', '/register', '/unauthorized' /*,'/requestPasswordReset','/resetPassword','/activateAccount'*/];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = cookieFun.isLoggedIn();
+
+  if (authRequired && !loggedIn) {
+    next('/login');
+  } else {
+    next();
+  }
+
+
+});
+
+export default router
