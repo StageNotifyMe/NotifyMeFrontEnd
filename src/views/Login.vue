@@ -1,7 +1,5 @@
 <template>
-  <q-page
-    class="row justify-center items-center"
-  >
+  <q-page class="row justify-center items-center">
     <div class="column">
       <div class="row">
         <h5 class="text-h5 q-my-md">NotifyMe</h5>
@@ -54,35 +52,57 @@
 </style>
 
 <script>
-import authRest from '../rest/authorizationRest'
+import authRest from "../rest/authorizationRest";
 
 export default {
-  name: 'Login',
-  data () {
-    return{
-      username: '',
-      password: ''
-    }
+  name: "Login",
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
   },
-  methods:{
-    redirectToAuth(){
-      authRest.getToken(this.username, this.password)
-      .then(result=>{
-        console.log(result.data.access_token)
-        console.log(result.data)
-    if (result.status == 200) {
-      let d = new Date();
-      d.setTime(d.getTime() + 1 * 1 * 60 * 60 * 1000);
-      let expires = "expires=" + d.toUTCString();
+  methods: {
+    redirectToAuth() {
+      authRest
+        .getToken(this.username, this.password)
+        .then((result) => {
+          console.log(result.data.access_token);
+          if (result.status == 200) {
+            let d = new Date();
+            d.setTime(d.getTime() + 1 * 1 * 60 * 60 * 1000);
+            let expires = "expires=" + d.toUTCString();
+            document.cookie =
+              "access_token=" +
+              result.data.access_token +
+              ";" +
+              expires +
+              ";path=/";
+            "username=" + result.data.username + ";" + expires + ";path=/";
+            this.decodeToken(result.data.access_token, expires);
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+
+    decodeToken(token, expires) {
+      const decoded = JSON.parse(atob(token.split(".")[1]));
+      let userInfoCookie = {
+        name: decoded.name,
+        given_name: decoded.given_name,
+        family_name: decoded.family_name,
+        username: decoded.preferred_username,
+        roles: decoded.resource_access.notifyme.roles,
+      };
       document.cookie =
-        "access_token=" + result.data.access_token + ";" + expires + ";path=/";
-        "username="+ result.data.username+";"+expires+";path=/";
-    }
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-    }
-    }
-}
+        "user_info=" +
+        JSON.stringify(userInfoCookie) +
+        ";" +
+        expires +
+        ";path=/";
+    },
+  },
+};
 </script>
