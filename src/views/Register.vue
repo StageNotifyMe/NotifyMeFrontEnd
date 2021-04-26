@@ -14,6 +14,30 @@
                 square
                 filled
                 clearable
+                v-model="firstname"
+                type="text"
+                label="first name"
+              />
+              <q-input
+                square
+                filled
+                clearable
+                v-model="lastname"
+                type="text"
+                label="last name"
+              />
+              <q-input
+                square
+                filled
+                clearable
+                v-model="email"
+                type="email"
+                label="email"
+              />
+              <q-input
+                square
+                filled
+                clearable
                 v-model="username"
                 type="text"
                 label="username"
@@ -35,7 +59,7 @@
               size="lg"
               class="full-width"
               label="Login"
-              @click="redirectToAuth()"
+              @click="register()"
             />
           </q-card-actions>
           <q-card-section class="text-center q-pa-none">
@@ -61,27 +85,24 @@ export default {
   data () {
     return{
       username: '',
-      password: ''
+      password: '',
+      email: '',
+      firstname: '',
+      lastname: ''
     }
   },
   methods:{
-    redirectToAuth(){
-      authRest.getToken(this.username, this.password)
-      .then(result=>{
-        console.log(result.data.access_token)
-        console.log(result.data)
-    if (result.status == 200) {
-      let d = new Date();
-      d.setTime(d.getTime() + 1 * 1 * 60 * 60 * 1000);
-      let expires = "expires=" + d.toUTCString();
-      document.cookie =
-        "access_token=" + result.data.access_token + ";" + expires + ";path=/";
-        "username="+ result.data.username+";"+expires+";path=/";
-    }
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+    register(){
+     const registration={
+       "username":this.username,
+       "firstname":this.firstname,
+       "lastname":this.lastname,
+       "email":this.email,
+       "password":this.password
+     }
+     authRest.register(registration).then(()=>{
+       console.log("Successfully registered");
+     }).catch(err=>console.log(err))
     }
     }
 }
