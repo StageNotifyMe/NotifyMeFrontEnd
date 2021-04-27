@@ -11,11 +11,9 @@
           icon="menu"
         />
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+        <q-toolbar-title> Quasar App </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>{{ showUserName() }}</div>
       </q-toolbar>
     </q-header>
 
@@ -27,51 +25,62 @@
     >
       <q-list>
         <q-item-label header>Essential Links</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
+        <q-item clickable @click="redirect('login')" v-if="!isLoggedIn()">
           <q-item-section avatar>
-            <q-icon name="school" />
+            <q-icon name="account" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
+            <q-item-label>Login</q-item-label>
+            <q-item-label caption>Go to login screen</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.com/quasarframework/">
+
+        <q-item clickable @click="redirect('/user/welcome')" v-if="isLoggedIn() && hasRole('user')">
           <q-item-section avatar>
-            <q-icon name="code" />
+            <q-icon name="welcome" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
+            <q-item-label>Welcome: user</q-item-label>
+            <q-item-label caption>User welcome screen</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
+        <q-item clickable @click="redirect('/admin/welcome')" v-if="isLoggedIn() && hasRole('admin')">
           <q-item-section avatar>
-            <q-icon name="chat" />
+            <q-icon name="welcome" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
+            <q-item-label>Welcome: admin</q-item-label>
+            <q-item-label caption>Admin welcome screen</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
+        <q-item clickable @click="redirect('/omanager/welcome')" v-if="isLoggedIn() && hasRole('organisation_manager')">
           <q-item-section avatar>
-            <q-icon name="forum" />
+            <q-icon name="welcome" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
+            <q-item-label>Welcome: omanager</q-item-label>
+            <q-item-label caption>Organisation manager welcome screen</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://twitter.com/quasarframework">
+        <q-item clickable @click="redirect('/vmanager/welcome')" v-if="isLoggedIn() && hasRole('venue_manager')">
           <q-item-section avatar>
-            <q-icon name="rss_feed" />
+            <q-icon name="welcome" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
+            <q-item-label>Welcome: vmanager</q-item-label>
+            <q-item-label caption>Venue manager welcome screen</q-item-label>
           </q-item-section>
         </q-item>
+        <q-item clickable @click="redirect('/lmanager/welcome')" v-if="isLoggedIn() && hasRole('line_manager')">
+          <q-item-section avatar>
+            <q-icon name="welcome" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Welcome: lmanager</q-item-label>
+            <q-item-label caption>Line manager welcome screen</q-item-label>
+          </q-item-section>
+        </q-item>
+        
       </q-list>
     </q-drawer>
 
@@ -82,19 +91,38 @@
 </template>
 
 <script>
-export default {
-  name: 'LayoutDefault',
+import cookieFun from "./javascript/cookieFunctions";
 
-  components: {
-    
+export default {
+  name: "LayoutDefault",
+
+  components: {},
+  methods: {
+    redirect(location) {
+      this.$router.push({ path: location });
+    },
+    showUserName() {
+      let userInfo = cookieFun.getCookie("user_info");
+      if (userInfo != "") {
+        return "Hello there "+ JSON.parse(userInfo).name +"!";
+      }
+      return "Not logged in";
+    },
+
+    isLoggedIn(){
+      return cookieFun.isLoggedIn();
+    },
+    hasRole(role){
+      return cookieFun.hasRole(role);
+    },
   },
 
-  data () {
+  data() {
     return {
-      leftDrawerOpen: false
-    }
-  }
-}
+      leftDrawerOpen: false,
+    };
+  },
+};
 </script>
 
 <style>
