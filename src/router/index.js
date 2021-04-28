@@ -11,7 +11,7 @@ import WelcomeAdmin from "../views/welcome/WelcomeAdmin.vue"
 import WelcomeOmanager from "../views/welcome/WelcomeOmanager.vue"
 import WelcomeVmanager from "../views/welcome/WelcomeVmanager.vue"
 import WelcomeLmanager from "../views/welcome/WelcomeLmanager.vue"
-
+import ManageOrganisations from "../views/admin/ManageOrganisations.vue"
 
 
 Vue.use(VueRouter)
@@ -59,7 +59,6 @@ const routes = [
 
   {
     path: '/admin',
-    component: WelcomeAdmin,
     beforeEnter: (to, from, next) => {
       if (!cookieFun.hasRole('admin')) {
         next('/unauthorized')
@@ -67,12 +66,24 @@ const routes = [
         next()
       }
     },
+    component: WelcomeAdmin,
     children: [
       {
         path: 'welcome',
         component: WelcomeAdmin
+      }]
+  },
+
+  {
+    path: '/admin/manageOrganisations',
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('admin')) {
+        next('/unauthorized')
+      } else {
+        next()
       }
-    ]
+    },
+    component: ManageOrganisations
   },
 
   {
