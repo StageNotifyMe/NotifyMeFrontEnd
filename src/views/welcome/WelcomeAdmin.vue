@@ -8,7 +8,6 @@
     </div>
     <div class="row justify-center">
       <p>user has admin role: {{ hasRole("admin") }}</p>
-      <q-btn color="secondary" @click="manageOrgs()" icon-right="groups" label="Manage organisations"></q-btn>
     </div>
     <div class="row justify-center">
       <p>user has venue_manager role: {{ hasRole("venue_manager") }}</p>
@@ -22,6 +21,12 @@
         {{ hasRole("organisation_manager") }}
       </p>
     </div>
+    <div class="row justify-center q-my-md">
+      <q-btn color="secondary" @click="redirectToManage('organisations')" icon-right="groups" label="Manage organisations"></q-btn>
+    </div>
+    <div class="row justify-center q-my-md">
+      <q-btn color="secondary" @click="redirectToManage('venues')" icon-right="groups" label="Manage venues"></q-btn>
+    </div>
   </q-page>
 </template>
 
@@ -33,9 +38,9 @@ export default {
     hasRole(role) {
       return cookieFun.hasRole(role);
     },
-    manageOrgs(){
-      this.$router.push("/admin/manage/organisations")
-    }
+    redirectToManage(location){
+      this.$router.push("/admin/manage/"+location)
+    },
   },
 };
 </script>

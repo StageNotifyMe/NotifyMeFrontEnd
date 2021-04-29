@@ -1,5 +1,5 @@
 <template>
-  <q-card>
+  <q-card class="q-ma-lg">
     <q-card-section>
       <div class="text-h3">Create new venue</div>
     </q-card-section>

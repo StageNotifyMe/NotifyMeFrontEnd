@@ -1,6 +1,10 @@
 <template>
   <q-page>
-    <CreateVenue />
+    <div class="row">
+      <div class="col">
+        <CreateVenue />
+      </div>
+    </div>
   </q-page>
 </template>
 
