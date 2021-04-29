@@ -12,6 +12,7 @@ import WelcomeOmanager from "../views/welcome/WelcomeOmanager.vue"
 import WelcomeVmanager from "../views/welcome/WelcomeVmanager.vue"
 import WelcomeLmanager from "../views/welcome/WelcomeLmanager.vue"
 import ManageOrganisations from "../views/admin/ManageOrganisations.vue"
+import ManageVenues from "../views/admin/ManageVenues"
 
 
 Vue.use(VueRouter)
@@ -71,11 +72,20 @@ const routes = [
       {
         path: 'welcome',
         component: WelcomeAdmin
-      }]
+      },
+      /*{
+        path: 'manage/Organisations',
+        component: ManageOrganisations
+      },
+      {
+        path: 'manage/Venues',
+        component: ManageVenues
+      }*/
+    ]
   },
 
   {
-    path: '/admin/manageOrganisations',
+    path: '/admin/manage/organisations',
     beforeEnter: (to, from, next) => {
       if (!cookieFun.hasRole('admin')) {
         next('/unauthorized')
@@ -84,6 +94,17 @@ const routes = [
       }
     },
     component: ManageOrganisations
+  },
+  {
+    path: '/admin/manage/venues',
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('admin')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+    component: ManageVenues
   },
 
   {

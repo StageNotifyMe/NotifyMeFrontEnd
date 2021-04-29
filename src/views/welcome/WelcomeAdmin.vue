@@ -34,7 +34,7 @@ export default {
       return cookieFun.hasRole(role);
     },
     manageOrgs(){
-      this.$router.replace("/admin/ManageOrganisations")
+      this.$router.push("/admin/manage/organisations")
     }
   },
 };
