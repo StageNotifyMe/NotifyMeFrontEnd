@@ -13,6 +13,7 @@ import WelcomeVmanager from "../views/welcome/WelcomeVmanager.vue"
 import WelcomeLmanager from "../views/welcome/WelcomeLmanager.vue"
 import ManageOrganisations from "../views/admin/ManageOrganisations.vue"
 import ManageVenues from "../views/admin/ManageVenues"
+import ManageEvents from "../views/venueManager/ManageEvents.vue"
 
 
 Vue.use(VueRouter)
@@ -143,6 +144,17 @@ const routes = [
     ]
   },
 
+  {
+    path: '/vmanager/manage/events',
+    component: ManageEvents,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('venue_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+  },
   {
     path: '/lmanager',
     component: WelcomeLmanager,
