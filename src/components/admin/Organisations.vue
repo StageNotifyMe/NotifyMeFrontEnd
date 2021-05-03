@@ -1,6 +1,7 @@
 <template>
   <q-page>
     <CreateOrganisation/>
+    <OrganisationList class="orgList"/>
   </q-page>
 </template>
 <style>
@@ -8,9 +9,11 @@
 
 <script>
 import CreateOrganisation from './CreateOrganisation.vue';
+import OrganisationList from './OrganisationList.vue';
 export default {
   components:{
-    CreateOrganisation
+    CreateOrganisation,
+    OrganisationList
   },
   name: 'Organisations',
 }
