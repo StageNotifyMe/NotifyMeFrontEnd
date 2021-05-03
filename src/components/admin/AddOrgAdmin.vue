@@ -37,8 +37,8 @@ import userRest from "../../rest/userRest";
 export default {
   name: "CreateOrganisation",
   props: {
-    id:{
-      type: Number,
+    organisation:{
+      type: Object,
       required: true
     }
   },
@@ -52,8 +52,8 @@ export default {
   methods: {
     onSubmit() {
       console.log(this.username)
-      console.log(this.id)
-      organisationRest.promoteUserToOrgMgr(this.id,this.username).then((response) => {
+      console.log(this.organisation)
+      organisationRest.promoteUserToOrgMgr(this.organisation.id,this.username).then((response) => {
         console.log(response);
       }).catch((err)=>{
         console.log(err)

@@ -22,7 +22,7 @@ export default {
   name: "OrganisationList",
   data(){
     return{
-      organisations: Array
+      organisations: null
     }
   },
   methods: {

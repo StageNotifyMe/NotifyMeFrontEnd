@@ -1,6 +1,6 @@
 <template>
-  <q-page> 
-      <AddOrgAdmin v-bind:id="parseInt(this.id)"/>
+  <q-page>
+    <AddOrgAdmin v-if="organisation != null" v-bind:organisation="this.organisation" />
   </q-page>
 </template>
 <style>
@@ -11,21 +11,13 @@ import AddOrgAdmin from "./AddOrgAdmin";
 export default {
   name: "Organisation",
   props: {
-    id: {
-      type: String,
-      required: true
-    }
+    organisation: {
+      type: Object,
+      required: true,
+    },
   },
-  data() {
-    organisation: null
+  components: {
+    AddOrgAdmin,
   },
-   components:{
-    AddOrgAdmin
-  },
-  methods:{
-getOrganisation(){
-  
-}
-  }
 };
 </script>

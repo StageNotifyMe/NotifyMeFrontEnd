@@ -11,6 +11,9 @@ export default {
     getOrganisations(){
         return axios.get(RESOURCE_PATH_ADMIN+"organisations",this.getAuthHeader())
     },
+    getOrganisation(id){
+        return axios.get(RESOURCE_PATH_ADMIN+"organisation?id="+id,this.getAuthHeader())
+    },
     promoteUserToOrgMgr(orgId,username){
         let promotion = {
             "username":username,
