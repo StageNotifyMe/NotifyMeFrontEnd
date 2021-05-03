@@ -1,5 +1,5 @@
 <template>
-  <q-page>
+  <div class="createOrgForm">
     <div class="q-pa-md" style="max-width: 400px">
       <q-form @submit="onSubmit" class="q-gutter-md">
         <q-input
@@ -39,9 +39,14 @@
         </q-dialog>
       </div> </template
   >
-  </q-page>
+  </div>
 </template>
-
+<style scoped>
+.createOrgForm{
+  min-height: 20%;
+  max-height: 20%;
+}
+</style>
 <script>
 import organisationRest from "../../rest/organisationRest";
 export default {
@@ -59,7 +64,7 @@ export default {
         console.log(response);
       }).catch((err)=>{
         console.log(err)
-        this.errorText = err;
+        this.errorText = err.response.data;
           this.seamless = true;
       });
     },
