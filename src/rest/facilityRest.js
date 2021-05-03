@@ -12,4 +12,12 @@ export default {
             }
         })
     },
+    createFacility(facilityJSON) {
+        return axios.post(RESOURCE_PATH_VMANAGER + "facility", facilityJSON, {
+            headers: {
+                "Authorization": "Bearer " + cookieFunctions.readCookie("access_token"),
+                "Content-Type": "application/json"
+            }
+        })
+    },
 }

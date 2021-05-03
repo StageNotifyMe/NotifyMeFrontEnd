@@ -6,7 +6,9 @@
         <ManageFacilities
           :venueId="venueId"
           @selectedFacility="setSelectedFacility"
+          class="q-mx-lg"
         />
+        <CreateFacility :venueId="venueId" />
       </div>
     </div>
   </q-page>
@@ -14,6 +16,7 @@
 
 <script>
 import ManageFacilities from "../../components/venueManager/facilities/ShowFacilities";
+import CreateFacility from "../../components/venueManager/facilities/CreateFacility";
 import venueRest from "../../rest/venueRest";
 export default {
   data() {
@@ -35,6 +38,7 @@ export default {
   },
   components: {
     ManageFacilities,
+    CreateFacility,
   },
 };
 </script>
