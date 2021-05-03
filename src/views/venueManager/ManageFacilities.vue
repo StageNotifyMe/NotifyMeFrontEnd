@@ -1,8 +1,10 @@
 <template>
   <q-page>
+    <div class="row justify-center">
+      <h2>Manage facilities | Venue ID: {{ venueId }}</h2>
+    </div>
     <div class="row">
       <div class="col">
-        <h3>Manage facilities | VenueId: {{ venueId }}</h3>
         <ManageFacilities
           :venueId="venueId"
           @selectedFacility="setSelectedFacility"
