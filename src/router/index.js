@@ -15,6 +15,7 @@ import ManageOrganisations from "../views/admin/ManageOrganisations.vue"
 import ManageVenues from "../views/admin/ManageVenues"
 import ManageEvents from "../views/venueManager/ManageEvents.vue"
 import ManageFacilities from "../views/venueManager/ManageFacilities.vue"
+import ManageLines from "../views/lineManager/ManageLines.vue"
 
 
 Vue.use(VueRouter)
@@ -183,6 +184,19 @@ const routes = [
         component: WelcomeLmanager
       }
     ]
+  },
+
+  {
+    path: '/vmanager/manage/lines/:eventId',
+    component: ManageLines,
+    props: true,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('venue_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
   },
 
   //redirecting for when full token name is used in route

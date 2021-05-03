@@ -43,7 +43,7 @@
 <script>
 import facRest from "../../../rest/facilityRest";
 export default {
-  name: "CreateEvent",
+  name: "CreateFacility",
   props: {
     venueId: {
       type: Number,
