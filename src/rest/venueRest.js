@@ -25,4 +25,12 @@ export default {
             }
         })
     },
+    getVenue(venueId) {
+        return axios.get(RESOURCE_PATH_VMANAGER + "venue?venueId=" + venueId, {
+            headers: {
+                "Authorization": "Bearer " + cookieFunctions.readCookie("access_token"),
+                "Content-Type": "application/json"
+            }
+        })
+    },
 }
