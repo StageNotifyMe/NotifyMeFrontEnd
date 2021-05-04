@@ -1,24 +1,19 @@
 <template>
   <q-page>
     <div class="row justify-center">
-      <h2>Manage lines (line manager)</h2>
+      <h2>Manage lines (venue manager)</h2>
     </div>
     <div class="row justify-center">
       <ShowEventLines :eventId="parseInt(eventId)" class="q-ma-md"/>
     </div>
     <div class="row justify-center">
-      <div class="column">
-        <q-btn 
-        label="Edit line"
-        color="primary"
-        @click="WIP()"
-        />
-      </div>
+      <CreateLine :eventId="parseInt(eventId)" />
     </div>
   </q-page>
 </template>
 
 <script>
+import CreateLine from "../../components/venueManager/CreateLine";
 import ShowEventLines from "../../components/venueManager/ShowEventLines";
 export default {
   props: {
@@ -31,21 +26,13 @@ export default {
   data() {
     return {};
   },
-  methods:{
-    WIP(){
-      this.$q.notify({
-          message: "This feature is not yet implemented",
-          color: "orange",
-          icon: "warning",
-          actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
-        });
-    }
-  },
 
   created() {
+    //this.eventId = this.$router.param.eventId;
   },
 
   components: {
+    CreateLine,
     ShowEventLines,
   },
 };

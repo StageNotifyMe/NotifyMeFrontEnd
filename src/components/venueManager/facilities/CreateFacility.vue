@@ -52,6 +52,8 @@ export default {
   },
   methods: {
     postFacility() {
+      this.minimalStaff = parseInt(this.minimalStaff);
+      this.maximalStaff = parseInt(this.maximalStaff);
       let errorMessage = this.validate();
       console.log(errorMessage);
       if (errorMessage == "") {
@@ -77,18 +79,19 @@ export default {
       if (this.description == "" || this.location == "") {
         errorMessage = "Don't leave any fields blank!";
       } else if (
-        this.minimalStaff > 0 &&
-        this.minimalStaff < this.maximalStaff
+        this.minimalStaff < 0 ||
+        this.minimalStaff > this.maximalStaff
       ) {
-        if (this.maximalStaff > 0 && this.maximalStaff > this.minimalStaff) {
-          errorMessage = "";
-        } else {
-          errorMessage =
-            "Maximal staff must be greater than 0 and greater than minimal staff.";
-        }
-      } else {
         errorMessage =
           "Minimal staff must be greater than 0 and lesser than maximal staff.";
+      } else if (
+        this.maximalStaff < 0 ||
+        this.maximalStaff < this.minimalStaff
+      ) {
+        errorMessage =
+          "Maximal staff must be greater than 0 and greater than minimal staff.";
+      } else {
+        errorMessage = "";
       }
       return errorMessage;
     },
