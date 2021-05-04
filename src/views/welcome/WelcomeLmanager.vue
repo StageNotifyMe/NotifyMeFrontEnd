@@ -4,32 +4,76 @@
       <h2>Welcome screen for line managers</h2>
     </div>
     <div class="row justify-center">
-      <p>user has user role: {{hasRole('user')}}</p>
+      <p>user has user role: {{ hasRole("user") }}</p>
     </div>
     <div class="row justify-center">
-      <p>user has admin role: {{hasRole('admin')}}</p>
+      <p>user has admin role: {{ hasRole("admin") }}</p>
     </div>
     <div class="row justify-center">
-      <p>user has venue_manager role: {{hasRole('venue_manager')}}</p>
+      <p>user has venue_manager role: {{ hasRole("venue_manager") }}</p>
     </div>
     <div class="row justify-center">
-      <p>user has line_manager role: {{hasRole('line_manager')}}</p>
+      <p>user has line_manager role: {{ hasRole("line_manager") }}</p>
     </div>
     <div class="row justify-center">
-      <p>user has organisation_manager role: {{hasRole('organisation_manager')}}</p>
+      <p>
+        user has organisation_manager role:
+        {{ hasRole("organisation_manager") }}
+      </p>
+    </div>
+
+    <div class="row justify-center">
+      <ShowEvents :userId="getUserId()" @selectedEvent="setSelectedEvent" />
+    </div>
+    <div class="row justify-center">
+      <div class="column">
+        <q-btn
+          label="Manage lines"
+          class="q-ma-md"
+          color="primary"
+          unelevated
+          @click="manageLines()"
+        />
+      </div>
     </div>
   </q-page>
 </template>
 
 <script>
-import cookieFun from "../../javascript/cookieFunctions"
+import cookieFun from "../../javascript/cookieFunctions";
+import ShowEvents from "../../components/lineManager/ShowEvents";
 
 export default {
-  methods:{
-    hasRole(role){
-      return cookieFun.hasRole(role)
+  data() {
+    return {
+      selectedEvent: null,
+    };
+  },
+  methods: {
+    hasRole(role) {
+      return cookieFun.hasRole(role);
     },
-  }
-
+    getUserId() {
+      return JSON.parse(cookieFun.getCookie("user_info")).id;
+    },
+    setSelectedEvent(event) {
+      this.selectedEvent = event;
+    },
+    manageLines() {
+      if (this.selectedEvent === null || this.selectedEvent === undefined) {
+        this.$q.notify({
+          message: "Please select an event",
+          color: "orange",
+          icon: "warning",
+          actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
+        });
+      } else {
+        this.$router.push("/lmanager/manage/lines/" + this.selectedEvent.id);
+      }
+    },
+  },
+  components: {
+    ShowEvents,
+  },
 };
 </script>

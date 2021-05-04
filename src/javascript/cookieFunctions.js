@@ -38,10 +38,10 @@ export default {
     },
 
     //creates cookie containing basic user information used to display in front-end
-    createUserInfoCookie(token, expires) {
+    createUserInfoCookie(token, expires, accessToken) {
         const decoded = JSON.parse(atob(token.split(".")[1]));
         let userId;
-        authRest.getUserInfo(decoded.preferred_username)
+        authRest.getUserInfo(decoded.preferred_username, accessToken)
             .then((result) => {
                 userId = result.data.id;
                 let userInfoCookie = {
@@ -88,7 +88,7 @@ export default {
                         expires +
                         ";path=/";
                     "username=" + result.data.username + ";" + expires + ";path=/";
-                    this.createUserInfoCookie(result.data.access_token, expires);
+                    this.createUserInfoCookie(result.data.access_token, expires, result.data.access_token);
                 }
             })
             .then(() => {

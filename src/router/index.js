@@ -15,6 +15,9 @@ import ManageOrganisations from "../views/admin/ManageOrganisations.vue"
 import ManageVenues from "../views/admin/ManageVenues"
 import Organisation from "../views/admin/Organisation.vue"
 import ManageEvents from "../views/venueManager/ManageEvents.vue"
+import ManageFacilities from "../views/venueManager/ManageFacilities.vue"
+import LMManageLines from "../views/lineManager/ManageLines.vue"
+import VMManageLines from "../views/venueManager/ManageLines.vue"
 
 
 Vue.use(VueRouter)
@@ -163,6 +166,17 @@ const routes = [
     },
   },
   {
+    path: '/vmanager/manage/facilities/:venueId',
+    component: ManageFacilities,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('venue_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+  },
+  {
     path: '/lmanager',
     component: WelcomeLmanager,
     beforeEnter: (to, from, next) => {
@@ -178,6 +192,31 @@ const routes = [
         component: WelcomeLmanager
       }
     ]
+  },
+
+  {
+    path: '/vmanager/manage/lines/:eventId',
+    component: VMManageLines,
+    props: true,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('venue_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+  },
+  {
+    path: '/lmanager/manage/lines/:eventId',
+    component: LMManageLines,
+    props: true,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('line_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
   },
 
   //redirecting for when full token name is used in route

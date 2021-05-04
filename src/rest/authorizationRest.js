@@ -10,7 +10,12 @@ export default {
     register(registration) {
         return axios.post(RESOURCE_PATH + "register", registration)
     },
-    getUserInfo(username) {
-        return axios.get(RESOURCE_PATH + "userInfo?username=" + username)
+    getUserInfo(username, accessToken) {
+        return axios.get(RESOURCE_PATH + "userInfo?username=" + username, {
+            headers: {
+                "Authorization": "Bearer " + accessToken,
+                "Content-Type": "application/json"
+            }
+        })
     }
 }
