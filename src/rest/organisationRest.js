@@ -2,6 +2,7 @@ import axios from 'axios'
 import cookieFunctions from '../javascript/cookieFunctions.js'
 
 const RESOURCE_PATH_ADMIN = 'http://localhost:8085/admin/'
+const RESOURCE_PATH_USER = 'http://localhost:8085/user/'
 
 export default {
     createOrganisation(name) {
@@ -13,6 +14,15 @@ export default {
     },
     getOrganisation(id){
         return axios.get(RESOURCE_PATH_ADMIN+"organisation?id="+id,this.getAuthHeader())
+    },
+    getOrganisationsLimitedInfo(){
+        return axios.get(RESOURCE_PATH_USER+"organisations",this.getAuthHeader())
+    },
+    applyToOrganisation(id){
+        return axios.post(RESOURCE_PATH_USER+"orgApplication?organisationId="+id,null,this.getAuthHeader())
+    },
+    getOrganisationApplications(){
+        return axios.get(RESOURCE_PATH_USER+"orgApplications",this.getAuthHeader())
     },
     promoteUserToOrgMgr(orgId,username){
         let promotion = {
