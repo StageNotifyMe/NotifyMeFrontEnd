@@ -4,10 +4,10 @@
       <q-form @submit="onSubmit" class="q-gutter-md">
         <q-select
           filled
-          icon="person_search"
-          v-model="username"
-          label="Promote user to organization manager."
-          hint="Username"
+          icon="groups"
+          v-model="orgname"
+          label="Apply to organisation."
+          hint="Organisation name"
           lazy-rules
           use-input
           fill-input
@@ -32,27 +32,20 @@
 </style>
 <script>
 import organisationRest from "../../rest/organisationRest";
-import userRest from "../../rest/userRest";
 export default {
-  name: "CreateOrganisation",
-  props: {
-    organisation:{
-      type: Object,
-      required: true
-    }
-  },
+  name: "ApplyToOrganisation",
   data() {
     return {
-      username:"",
+      orgname:"",
       options: new Array(),
-      usernameCache: new Array()
+      orgnameCache: new Array(),
+      organisations: new Array()
     };
   },
   methods: {
     onSubmit() {
-      console.log(this.username)
-      console.log(this.organisation)
-      organisationRest.promoteUserToOrgMgr(this.organisation.id,this.username).then((response) => {
+      console.log(this.orgname)
+      organisationRest.applyToOrganisation(this.findOrgIdByName(this.orgname)).then((response) => {
         console.log(response);
       }).catch((err)=>{
         console.log(err)
@@ -60,30 +53,32 @@ export default {
           this.seamless = true;
       });
     },
-    getUsers(){
-        userRest.getUsers().then(response=>{
-            console.log(response);
-            let usernames=new Array();
-            response.data.forEach(element => {
-                usernames.push(element.username);
-                this.usernameCache.push(element.username)
-            });
-            this.options=usernames;
-            console.log(this.options);
-
+    findOrgIdByName(orgname){
+       return this.organisations.filter(org=>org.name==orgname)[0].id;
+    },
+    getOrganisations(){
+        organisationRest.getOrganisationsLimitedInfo().then(response=>{
+            this.organisations=response.data.organisations;
+            this.fillNamesFromOrgs();
         }).catch(err=>{
             console.log(err);
         })
     },
+    fillNamesFromOrgs(){
+        this.organisations.forEach((org) => {
+            this.options.push(org.name);
+            this.orgnameCache.push(org.name);
+        });
+    },
     filterFn (val, update) {
       update(() => {
         const needle = val.toLowerCase()
-        this.options = this.usernameCache.filter(v => v.toLowerCase().indexOf(needle) > -1)
+        this.options = this.orgnameCache.filter(v => v.toLowerCase().indexOf(needle) > -1)
       })
     }
   },
   beforeMount(){
-      this.getUsers();
+      this.getOrganisations();
   }
 };
 </script>
