@@ -29,4 +29,10 @@ export default {
             }
         })
     },
+    promoteToLManager(userId, eventId) {
+        return axios.post(RESOURCE_PATH_VMANAGER + "promoteToLineManager?userId=" + userId + "&eventId=" + eventId, null, cookieFunctions.getAuthHeader());
+    },
+    getLineManagers(eventId) {
+        return axios.get(RESOURCE_PATH_VMANAGER + "lineManagers?eventId=" + eventId, cookieFunctions.getAuthHeader());
+    },
 }
