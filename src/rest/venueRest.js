@@ -33,4 +33,10 @@ export default {
             }
         })
     },
+    promoteToVmanager(userId, venueId) {
+        return axios.post(RESOURCE_PATH_ADMIN + "promoteUserToVmanager?userId=" + userId + "&venueId=" + venueId, null, cookieFunctions.getAuthHeaderJSON())
+    },
+    getVenueManagers(venueId) {
+        return axios.get(RESOURCE_PATH_ADMIN + "venueManagers?venueId=" + venueId, cookieFunctions.getAuthHeader())
+    },
 }

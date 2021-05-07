@@ -18,8 +18,8 @@ import ManageEvents from "../views/venueManager/ManageEvents.vue"
 import ManageFacilities from "../views/venueManager/ManageFacilities.vue"
 import LMManageLines from "../views/lineManager/ManageLines.vue"
 import VMManageLines from "../views/venueManager/ManageLines.vue"
+import AManageVenuesEdit from "../views/admin/ManageVenuesEdit.vue"
 import ManageUserOrganisations from "../views/user/UserOrganisations.vue"
-
 
 Vue.use(VueRouter)
 
@@ -103,7 +103,7 @@ const routes = [
       }
     },
     component: ManageOrganisations,
-    
+
   },
   {
     path: '/admin/manage/organisation/:id',
@@ -128,6 +128,19 @@ const routes = [
       }
     },
     component: ManageVenues
+  },
+
+  {
+    path: '/admin/manage/venues/:venueId',
+    props: true,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('admin')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+    component: AManageVenuesEdit
   },
 
   {
