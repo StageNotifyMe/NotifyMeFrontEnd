@@ -103,4 +103,18 @@ export default {
     getRoles() {
         return JSON.parse(atob(this.getCookie('access_token').split(".")[1])).resource_access.notifyme.roles
     },
+
+    //returns authorization header
+    getAuthHeader(){
+        return {headers:{
+            "Authorization": "Bearer "+ this.readCookie("access_token")
+        }}
+    },
+    //returns authorization header with content type JSON
+    getAuthHeaderJSON(){
+        return {headers:{
+            "Authorization": "Bearer "+ this.readCookie("access_token"),
+            "Content-Type":"application/json"
+        }}
+    },
 }
