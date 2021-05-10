@@ -34,33 +34,13 @@ export default {
       userId: "",
       columns: [
         {
-          name: "description",
-          field: "description",
-          label: "Description",
+          name: "userId",
+          field: "userId",
+          label: "ID",
           align: "left",
           sortable: true,
         },
-        {
-          name: "location",
-          field: "location",
-          label: "Location",
-          align: "left",
-          sortable: true,
-        },
-        {
-          name: "minimalStaff",
-          field: "minimalStaff",
-          label: "Minimal staff",
-          align: "left",
-          sortable: true,
-        },
-        {
-          name: "maximalStaff",
-          field: "maximalStaff",
-          label: "Maximal staff",
-          align: "left",
-          sortable: true,
-        },
+        
       ],
       selected: [],
     };
