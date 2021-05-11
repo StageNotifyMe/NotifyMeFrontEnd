@@ -54,6 +54,12 @@ export default {
       console.log(this.organisation)
       organisationRest.promoteUserToOrgMgr(this.organisation.id,this.username).then((response) => {
         console.log(response);
+        this.$q.notify({
+          message: "Promoted user to organisation manager.",
+          color: "green",
+          icon: "info",
+          actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
+        });
       }).catch((err)=>{
         console.log(err)
         this.errorText = err.response.data;

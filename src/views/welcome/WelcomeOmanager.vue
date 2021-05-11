@@ -18,6 +18,9 @@
     <div class="row justify-center">
       <p>user has organisation_manager role: {{hasRole('organisation_manager')}}</p>
     </div>
+    <div class="row justify-center q-my-md">
+      <q-btn color="secondary" @click="redirectToManage('organisations')" icon-right="groups" label="Manage organisations"></q-btn>
+    </div>
   </q-page>
 </template>
 
@@ -28,6 +31,9 @@ export default {
   methods:{
     hasRole(role){
       return cookieFun.hasRole(role)
+    },
+    redirectToManage(location){
+      this.$router.push("/omanager/manage/"+location)
     },
   }
 
