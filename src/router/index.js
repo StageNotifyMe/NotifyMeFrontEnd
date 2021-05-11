@@ -12,8 +12,10 @@ import WelcomeOmanager from "../views/welcome/WelcomeOmanager.vue"
 import WelcomeVmanager from "../views/welcome/WelcomeVmanager.vue"
 import WelcomeLmanager from "../views/welcome/WelcomeLmanager.vue"
 import ManageOrganisations from "../views/admin/ManageOrganisations.vue"
+import ManageOrganisationsOManager from "../views/organisationManager/ManageOrganisations.vue"
 import ManageVenues from "../views/admin/ManageVenues"
 import Organisation from "../views/admin/Organisation.vue"
+import OrganisationForOManager from "../views/organisationManager/Organisation.vue"
 import ManageEvents from "../views/venueManager/ManageEvents.vue"
 import ManageFacilities from "../views/venueManager/ManageFacilities.vue"
 import LMManageLines from "../views/lineManager/ManageLines.vue"
@@ -117,6 +119,29 @@ const routes = [
       }
     },
     component: Organisation
+  },
+  {
+    path: '/omanager/manage/organisations',
+    component: ManageOrganisationsOManager,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('organisation_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+  },
+  {
+    path: '/omanager/manage/organisation/:id',
+    component: OrganisationForOManager,
+    props:true,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('organisation_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
   },
   {
     path: '/admin/manage/venues',
