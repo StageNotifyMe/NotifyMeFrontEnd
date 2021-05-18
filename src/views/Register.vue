@@ -36,6 +36,14 @@
                 square
                 filled
                 clearable
+                v-model="phoneNumber"
+                type="phone"
+                label="Phone number"
+              />
+              <q-input
+                square
+                filled
+                clearable
                 v-model="username"
                 type="text"
                 label="Username"
@@ -125,6 +133,7 @@ export default {
       email: "",
       firstname: "",
       lastname: "",
+      phoneNumber: "",
 
       seamless: false,
       errorText: "",
@@ -145,6 +154,7 @@ export default {
             firstname: this.firstname,
             lastname: this.lastname,
             email: this.email,
+            phoneNumber: this.phoneNumber,
             password: this.password,
           };
           authRest
