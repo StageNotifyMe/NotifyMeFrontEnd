@@ -11,9 +11,7 @@ export default {
         });
     },
     deleteCommunicationPreference(id) {
-        console.log(id);
-        return console.error("DIT WERKT NIET, VETTE PECH");
-        //return axios.delete(RESOURCE_PATH_USER + "communicationpreference?communicationPreferenceId=" + id, cookieFunctions.getAuthHeader);
+        return axios.delete(RESOURCE_PATH_USER + "communicationpreference?communicationPreferenceId=" + id, cookieFunctions.getAuthHeader);
     },
     updateCommunicationPreference(comPref) {
         const body = {
@@ -21,23 +19,10 @@ export default {
             isActive: comPref.active,
             isDefault: comPref.defaultt
         }
-
-        const options = {
-            method: 'put',
-            url: RESOURCE_PATH_USER+'communicationpreference',
-            data: body,
-            headers: {
-                'Content-Type':'application/json',
-                'Authorization':'Bearer '+cookieFunctions.readCookie('access_token'),
-                'Access-Control-Allow-Origin':'*'
-            }
-        }
-        console.log(options);
-        return axios(options);
-        //return axios.put(RESOURCE_PATH_USER + "communicationpreference", body, cookieFunctions.getAuthHeaderJSON);
+        return axios.put(RESOURCE_PATH_USER + "communicationpreference", body, { headers: { 'Authorization': 'Bearer ' + cookieFunctions.readCookie('access_token') } });
     },
-    createCommunicationPreference(comPref){
-        return axios.post(RESOURCE_PATH_USER+'communicationpreference',comPref,cookieFunctions.getAuthHeaderJSON);
+    createCommunicationPreference(comPref) {
+        return axios.post(RESOURCE_PATH_USER + 'communicationpreference', comPref, cookieFunctions.getAuthHeaderJSON);
     }
 
 }

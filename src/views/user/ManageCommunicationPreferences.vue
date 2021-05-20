@@ -5,16 +5,6 @@
       <ShowComPref @selectedComPref="setSelectedComPref" />
     </div>
     <div class="row justify-center">
-      <div class="column">
-        <q-btn
-          unelevated
-          color="primary"
-          icon="add"
-          label="Add"
-          class="q-ma-md"
-          @click="createComPref()"
-        />
-      </div>
       <div
         class="column"
         v-if="
@@ -78,6 +68,9 @@
         />
       </div>
     </div>
+    <div class="row justify-center">
+      <createCommunicationPreference />
+    </div>
   </q-page>
 </template>
 
@@ -85,6 +78,8 @@
 import ShowComPref from "../../components/user/ShowCommunicationPreferences";
 import cookieFunctions from "../../javascript/cookieFunctions";
 import communicationPreferencesRest from "../../rest/communicationPreferencesRest";
+import createCommunicationPreference from "../../components/user/CreateCommunicationPreference";
+
 export default {
   name: "ManageCommunicationPreferences",
   data() {
@@ -101,13 +96,7 @@ export default {
       communicationPreferencesRest
         .deleteCommunicationPreference(this.selectedComPref.id)
         .catch((error) => {
-          console.log(error);
-          this.$q.notify({
-            message: error.response.data,
-            color: "red",
-            icon: "error",
-            actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
-          });
+          this.showError(error);
         });
     },
     updateSelectedComPref() {
@@ -116,17 +105,17 @@ export default {
       communicationPreferencesRest
         .updateCommunicationPreference(updatedComPref)
         .catch((error) => {
-          console.log(error);
-          this.$q.notify({
-            message: error.response.data,
-            color: "red",
-            icon: "error",
-            actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
-          });
+          this.showError(error);
         });
     },
     makeDefault() {
-      console.log(this.selectedComPref.defaultt);
+      let updatedComPref = this.selectedComPref;
+      updatedComPref.defaultt = true;
+      communicationPreferencesRest
+        .updateCommunicationPreference(updatedComPref)
+        .catch((error) => {
+          this.showError(error);
+        });
     },
 
     createComPref() {
@@ -140,17 +129,22 @@ export default {
       communicationPreferencesRest
         .createCommunicationPreference(body)
         .catch((error) => {
-          this.$q.notify({
-            message: error.response.data,
-            color: "red",
-            icon: "error",
-            actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
-          });
+          this.showError(error);
         });
+    },
+
+    showError(error) {
+      this.$q.notify({
+        message: error.response.data,
+        color: "red",
+        icon: "error",
+        actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
+      });
     },
   },
   components: {
     ShowComPref,
+    createCommunicationPreference,
   },
 };
 </script>
