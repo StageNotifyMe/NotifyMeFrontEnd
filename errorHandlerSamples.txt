@@ -1,0 +1,10 @@
+ERROR TONEN VAN REST
+.catch((error) => {
+          console.log(error);
+          this.$q.notify({
+            message: error.response.data,
+            color: "red",
+            icon: "error",
+            actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
+          });
+        });

@@ -110,6 +110,7 @@ export default {
             "Authorization": "Bearer "+ this.readCookie("access_token")
         }}
     },
+
     //returns authorization header with content type JSON
     getAuthHeaderJSON(){
         return {headers:{
