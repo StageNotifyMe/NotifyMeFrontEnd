@@ -35,6 +35,16 @@
           </q-item-section>
         </q-item>
 
+        <q-item clickable @click="redirect('register')" v-if="!isLoggedIn()">
+          <q-item-section avatar>
+            <q-icon name="account" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Register</q-item-label>
+            <q-item-label caption>Go to registration screen</q-item-label>
+          </q-item-section>
+        </q-item>
+
         <q-item clickable @click="redirect('/user/welcome')" v-if="isLoggedIn() && hasRole('user')">
           <q-item-section avatar>
             <q-icon name="welcome" />
@@ -85,6 +95,10 @@
     </q-drawer>
 
     <q-page-container>
+      <q-btn v-if="isLoggedIn()" label="Notifications" @click="notificationDialogue = true"></q-btn>
+      <q-dialog v-if="isLoggedIn()" v-model="notificationDialogue">
+      <notificationsOverview/>
+      </q-dialog>
       <router-view></router-view>
     </q-page-container>
   </q-layout>
@@ -92,11 +106,12 @@
 
 <script>
 import cookieFun from "./javascript/cookieFunctions";
+import notificationsOverview from "./components/notificationsOverview"
 
 export default {
   name: "LayoutDefault",
 
-  components: {},
+  components: {notificationsOverview},
   methods: {
     redirect(location) {
       this.$router.push({ path: location });
@@ -120,6 +135,7 @@ export default {
   data() {
     return {
       leftDrawerOpen: false,
+      notificationDialogue: false,
     };
   },
 };
