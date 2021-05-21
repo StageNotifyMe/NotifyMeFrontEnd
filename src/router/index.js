@@ -23,6 +23,7 @@ import VMManageLines from "../views/venueManager/ManageLines.vue"
 import AManageVenuesEdit from "../views/admin/ManageVenuesEdit.vue"
 import ManageUserOrganisations from "../views/user/UserOrganisations.vue"
 import ManageEventsEdit from "../views/venueManager/ManageEventsEdit.vue"
+import ManageCommunicationPreferences from "../views/user/ManageCommunicationPreferences.vue"
 
 Vue.use(VueRouter)
 
@@ -68,6 +69,17 @@ const routes = [
   {
     path: '/user/manage/organisations',
     component: ManageUserOrganisations,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('user')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+  },
+  {
+    path: '/user/manage/communicationPreferences',
+    component: ManageCommunicationPreferences,
     beforeEnter: (to, from, next) => {
       if (!cookieFun.hasRole('user')) {
         next('/unauthorized')
@@ -135,7 +147,7 @@ const routes = [
   {
     path: '/omanager/manage/organisation/:id',
     component: OrganisationForOManager,
-    props:true,
+    props: true,
     beforeEnter: (to, from, next) => {
       if (!cookieFun.hasRole('organisation_manager')) {
         next('/unauthorized')
