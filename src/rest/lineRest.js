@@ -2,6 +2,8 @@ import axios from 'axios'
 import cookieFunctions from '../javascript/cookieFunctions.js'
 
 const RESOURCE_PATH_VMANAGER = 'http://localhost:8085/vmanager/'
+const RESOURCE_PATH_LMANAGER = 'http://localhost:8085/lmanager/'
+
 
 export default {
     createLine(lineJSON) {
@@ -13,7 +15,7 @@ export default {
         })
     },
     getAllLinesForEvent(eventId) {
-        return axios.get(RESOURCE_PATH_VMANAGER + "lines?eventId=" + eventId, {
+        return axios.get(RESOURCE_PATH_LMANAGER + "lines?eventId=" + eventId, {
             headers: {
                 "Authorization": "Bearer " + cookieFunctions.readCookie("access_token"),
                 "Content-Type": "application/json"
