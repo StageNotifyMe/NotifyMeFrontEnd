@@ -54,6 +54,13 @@ export default {
           align: "left",
           sortable: true,
         },
+        {
+          name: "urgent",
+          field: "urgent",
+          label: "Urgent",
+          align: "left",
+          sortable: true,
+        },
       ],
       selected: [],
     };

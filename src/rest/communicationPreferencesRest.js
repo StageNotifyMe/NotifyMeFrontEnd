@@ -7,6 +7,7 @@ export default {
     getAllCommunicationPreferences() {
         let id = JSON.parse(cookieFunctions.getCookie("user_info")).id;
         return axios.get(RESOURCE_PATH_USER + "communicationpreferences?userId=" + id).then((result) => {
+            console.log(result);
             return result.data;
         });
     },
@@ -17,7 +18,8 @@ export default {
         const body = {
             communicationPreferenceId: comPref.id,
             isActive: comPref.active,
-            isDefault: comPref.defaultt
+            isDefault: comPref.defaultt,
+            isUrgent: comPref.urgent
         }
         return axios.put(RESOURCE_PATH_USER + "communicationpreference", body, { headers: { 'Authorization': 'Bearer ' + cookieFunctions.readCookie('access_token') } });
     },
