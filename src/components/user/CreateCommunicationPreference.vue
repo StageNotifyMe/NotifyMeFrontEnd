@@ -45,6 +45,7 @@ export default {
         userId: JSON.parse(cookieFunctions.getCookie("user_info")).id,
         isActive: true,
         isDefault: false,
+        isUrgent: false,
         communicationStrategy: this.options[
           this.simplifiedOptions.findIndex((i) => i == this.selectedStrategy)
         ],

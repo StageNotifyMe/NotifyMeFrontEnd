@@ -67,6 +67,24 @@
           @click="makeDefault()"
         />
       </div>
+
+      <div
+        class="column"
+        v-if="
+          selectedComPref !== null &&
+          selectedComPref !== undefined &&
+          selectedComPref != ''
+        ">
+        <q-btn
+          v-if="selectedComPref.urgent != true"
+          unelevated
+          color="primary"
+          icon="star"
+          label="Make Urgent"
+          class="q-ma-md"
+          @click="updateSelectedComPref()"
+        />
+      </div>
     </div>
     <div class="row justify-center">
       <createCommunicationPreference />
@@ -102,6 +120,8 @@ export default {
     updateSelectedComPref() {
       let updatedComPref = this.selectedComPref;
       updatedComPref.active = !this.selectedComPref.active;
+      updatedComPref.urgent = !this.selectedComPref.urgent;
+      console.log("Updating pref: "+JSON.stringify(updatedComPref))
       communicationPreferencesRest
         .updateCommunicationPreference(updatedComPref)
         .catch((error) => {
@@ -123,6 +143,7 @@ export default {
         userId: JSON.parse(cookieFunctions.getCookie("user_info")).id,
         isActive: true,
         isDefault: false,
+        isUrgent: false,
         communicationStrategy: "emailcommunicationstrategy",
       };
       console.log(body);
