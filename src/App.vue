@@ -11,7 +11,7 @@
           icon="menu"
         />
 
-        <q-toolbar-title> Quasar App </q-toolbar-title>
+        <q-toolbar-title> NotifyMe </q-toolbar-title>
 
         <div>{{ showUserName() }}</div>
       </q-toolbar>
