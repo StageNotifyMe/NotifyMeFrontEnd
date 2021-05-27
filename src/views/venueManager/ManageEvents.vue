@@ -13,7 +13,7 @@
     <div class="row justify-center">
       <div class="column">
         <q-btn
-          label="Manage lines"
+          label="Create/Delete lines"
           class="q-ma-md"
           color="primary"
           unelevated
@@ -22,7 +22,7 @@
       </div>
       <div class="column">
         <q-btn
-          label="Edit lines"
+          label="Edit lines/managers"
           class="q-ma-md"
           color="primary"
           unelevated
