@@ -62,6 +62,13 @@ export default {
           align: "left",
           sortable: true,
         },
+        {
+          name: "status",
+          field: "eventStatus",
+          label: "Status",
+          align: "left",
+          sortable: true,
+        },
       ],
       selected: [],
     };
