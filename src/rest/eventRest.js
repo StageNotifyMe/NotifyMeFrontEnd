@@ -35,4 +35,18 @@ export default {
     getLineManagers(eventId) {
         return axios.get(RESOURCE_PATH_VMANAGER + "lineManagers?eventId=" + eventId, cookieFunctions.getAuthHeader());
     },
+    cancelEvent(eventId) {
+        const body = {
+            eventId: eventId,
+            eventStatus: "CANCELED",
+        }
+        return axios.put(RESOURCE_PATH_VMANAGER + "event/status", body, cookieFunctions.getAuthHeaderJSON());
+    },
+    activateEvent(eventId) {
+        const body = {
+            eventId: eventId,
+            eventStatus: "OK",
+        }
+        return axios.put(RESOURCE_PATH_VMANAGER + "event/status", body, cookieFunctions.getAuthHeaderJSON());
+    }
 }

@@ -1,8 +1,8 @@
 <template>
-  <div v-if="users != null">
+  <div>
     <q-table
       :title="title"
-      :data="users"
+      :data="organisations"
       :columns="columns"
       row-key="id"
       selection="single"
@@ -13,46 +13,46 @@
 </template>
 <script>
 export default {
-  name: "ShowUsers",
+  name: "ShowOrganisations",
   props: {
-    users: {
-      type: Array,
-      required: true,
-    },
     title: {
       type: String,
+      required: false,
+    },
+    organisations: {
+      type: Array,
       required: true,
     },
   },
   methods: {
     emitSelected() {
-      this.$emit("selectedUser", this.selected[0]);
+      this.$emit("selectedOrganisation", this.selected[0]);
     },
   },
   data() {
     return {
-      userId: "",
+      lines: [],
       columns: [
         {
-          name: "userId",
-          field: "userId",
+          name: "id",
+          field: "id",
           label: "ID",
           align: "left",
           sortable: true,
         },
         {
-          name: "username",
-          field: "userName",
-          label: "Username",
+          name: "name",
+          field: "name",
+          label: "Name",
           align: "left",
           sortable: true,
         },
-        
       ],
       selected: [],
     };
   },
 
-  created() {},
+  created() {
+  },
 };
 </script>

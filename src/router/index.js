@@ -24,6 +24,7 @@ import AManageVenuesEdit from "../views/admin/ManageVenuesEdit.vue"
 import ManageUserOrganisations from "../views/user/UserOrganisations.vue"
 import ManageEventsEdit from "../views/venueManager/ManageEventsEdit.vue"
 import ManageCommunicationPreferences from "../views/user/ManageCommunicationPreferences.vue"
+import ManageLinesEdit from "../views/lineManager/ManageLinesEdit.vue"
 
 Vue.use(VueRouter)
 
@@ -284,6 +285,18 @@ const routes = [
   {
     path: '/lmanager/manage/lines/:eventId',
     component: LMManageLines,
+    props: true,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('line_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+  },
+  {
+    path: '/lmanager/manage/lines/edit/:lineId',
+    component: ManageLinesEdit,
     props: true,
     beforeEnter: (to, from, next) => {
       if (!cookieFun.hasRole('line_manager')) {
