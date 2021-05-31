@@ -15,13 +15,22 @@
       class="row justify-center q-py-md"
       v-if="selectedOrg !== null && selectedOrg !== undefined"
     >
-      <div class="column">
+      <div class="column q-mx-md">
         <q-btn
           label="Delete"
           color="primary"
           icon="delete"
           unelevated
           @click="removeOrg()"
+        />
+      </div>
+      <div class="column q-mx-md">
+        <q-btn
+          label="Send notification"
+          color="primary"
+          icon="message"
+          unelevated
+          @click="openNotificationDialog(true)"
         />
       </div>
     </div>
@@ -47,11 +56,17 @@
         />
       </div>
     </div>
+    <CreateNotification
+      :organisation="selectedOrg"
+      :open="notifyOrg"
+      @orgNotify="openNotificationDialog"
+    />
   </q-page>
 </template>
 
 <script>
 import ShowOrganisations from "../../components/lineManager/ShowOrganisations";
+import CreateNotification from "../../components/lineManager/CreateNotification";
 import teamRest from "../../rest/teamRest";
 export default {
   name: "ManageLinesEdit",
@@ -68,9 +83,13 @@ export default {
       selectedOrg: null,
       selectedAvOrg: null,
       availableOrgs: [],
+      notifyOrg: false,
     };
   },
   methods: {
+    openNotificationDialog(mustOpen) {
+      this.notifyOrg = mustOpen;
+    },
     removeOrg() {
       teamRest
         .deleteOrganisationFromTeam(this.teamId, this.selectedOrg.id)
@@ -156,6 +175,7 @@ export default {
   },
   components: {
     ShowOrganisations,
+    CreateNotification,
   },
 };
 </script>
