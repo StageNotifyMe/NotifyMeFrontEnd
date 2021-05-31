@@ -1,5 +1,6 @@
 <template>
   <q-page>
+    <h3>Currently using app as: Line manager</h3>
     <div class="row justify-center">
       <h2>Manage lines (line manager)</h2>
     </div>
