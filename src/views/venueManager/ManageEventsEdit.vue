@@ -35,7 +35,7 @@
 <script>
 import ShowUsers from "../../components/admin/ShowUsers";
 import UserDetailsCard from "../../components/UserDetailsCard";
-import UserSelection from "../../components/admin/UserSelection";
+import UserSelection from "../../components/venueManager/UserSelection";
 import eventRest from "../../rest/eventRest";
 export default {
   name: "ManageEventsEdit",

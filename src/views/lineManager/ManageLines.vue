@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import ShowEventLines from "../../components/venueManager/ShowEventLines";
+import ShowEventLines from "../../components/lineManager/ShowEventLines";
 export default {
   props: {
     eventId: {
