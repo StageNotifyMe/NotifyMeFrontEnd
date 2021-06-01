@@ -37,6 +37,14 @@
         label="Notification settings"
       ></q-btn>
     </div>
+    <div class="row justify-center q-my-md">
+      <q-btn
+        color="secondary"
+        @click="redirect('availableLines')"
+        icon-right="groups"
+        label="Available Lines"
+      ></q-btn>
+    </div>
   </q-page>
 </template>
 
@@ -50,6 +58,9 @@ export default {
     },
     redirectToManage(location) {
       this.$router.push("/user/manage/" + location);
+    },
+    redirect(location) {
+      this.$router.push("/user/" + location);
     },
   },
 };

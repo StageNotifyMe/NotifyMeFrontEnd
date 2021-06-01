@@ -25,7 +25,7 @@ import ManageUserOrganisations from "../views/user/UserOrganisations.vue"
 import ManageEventsEdit from "../views/venueManager/ManageEventsEdit.vue"
 import ManageCommunicationPreferences from "../views/user/ManageCommunicationPreferences.vue"
 import ManageLinesEdit from "../views/lineManager/ManageLinesEdit.vue"
-
+import LineApplications from "../views/user/LineApplications.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -70,6 +70,17 @@ const routes = [
   {
     path: '/user/manage/organisations',
     component: ManageUserOrganisations,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('user')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+  },
+  {
+    path: '/user/availableLines',
+    component: LineApplications,
     beforeEnter: (to, from, next) => {
       if (!cookieFun.hasRole('user')) {
         next('/unauthorized')

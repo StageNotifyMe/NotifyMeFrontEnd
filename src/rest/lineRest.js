@@ -3,6 +3,8 @@ import cookieFunctions from '../javascript/cookieFunctions.js'
 
 const RESOURCE_PATH_VMANAGER = 'http://localhost:8085/vmanager/'
 const RESOURCE_PATH_LMANAGER = 'http://localhost:8085/lmanager/'
+const RESOURCE_PATH_USER = 'http://localhost:8085/user/'
+
 
 export default {
     createLine(lineJSON) {
@@ -29,4 +31,28 @@ export default {
             }
         })
     },
+    getAvailableLines(){
+        return axios.get(RESOURCE_PATH_USER + "lines", {
+            headers: {
+                "Authorization": "Bearer " + cookieFunctions.readCookie("access_token"),
+                "Content-Type": "application/json"
+            }
+        })
+    },
+    getTeamApplications(){
+        return axios.get(RESOURCE_PATH_USER + "teamApplications", {
+            headers: {
+                "Authorization": "Bearer " + cookieFunctions.readCookie("access_token"),
+                "Content-Type": "application/json"
+            }
+        })
+    },
+    sendTeamApplication(teamId){
+        return axios.post(RESOURCE_PATH_USER + "teamApplication?teamId="+teamId, null, {
+            headers: {
+                "Authorization": "Bearer " + cookieFunctions.readCookie("access_token"),
+                "Content-Type": "application/json"
+            }
+        })
+    }
 }
