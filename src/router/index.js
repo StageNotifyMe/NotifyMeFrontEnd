@@ -26,6 +26,7 @@ import ManageEventsEdit from "../views/venueManager/ManageEventsEdit.vue"
 import ManageCommunicationPreferences from "../views/user/ManageCommunicationPreferences.vue"
 import ManageLinesEdit from "../views/lineManager/ManageLinesEdit.vue"
 import LineApplications from "../views/user/LineApplications.vue"
+import ManageTeamApplications from "../views/organisationManager/ManageTeamApplications.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -156,6 +157,19 @@ const routes = [
       }
     },
   },
+
+  {
+    path: '/omanager/manage/teamApplications',
+    component: ManageTeamApplications,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('organisation_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+  },
+
   {
     path: '/omanager/manage/organisation/:id',
     component: OrganisationForOManager,
