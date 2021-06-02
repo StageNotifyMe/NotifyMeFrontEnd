@@ -16,7 +16,7 @@ export default {
         })
     },
     getAllLinesForEvent(eventId) {
-        return axios.get(RESOURCE_PATH_VMANAGER + "lines?eventId=" + eventId, {
+        return axios.get(RESOURCE_PATH_LMANAGER + "lines?eventId=" + eventId, {
             headers: {
                 "Authorization": "Bearer " + cookieFunctions.readCookie("access_token"),
                 "Content-Type": "application/json"
