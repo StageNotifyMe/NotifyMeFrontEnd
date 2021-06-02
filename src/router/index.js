@@ -25,13 +25,10 @@ import ManageUserOrganisations from "../views/user/UserOrganisations.vue"
 import ManageEventsEdit from "../views/venueManager/ManageEventsEdit.vue"
 import ManageCommunicationPreferences from "../views/user/ManageCommunicationPreferences.vue"
 import ManageLinesEdit from "../views/lineManager/ManageLinesEdit.vue"
-<<<<<<< HEAD
 import LineApplications from "../views/user/LineApplications.vue"
 import ManageTeamApplications from "../views/organisationManager/ManageTeamApplications.vue"
-=======
 import AccountSettings from "../views/user/AccountSettings.vue"
 
->>>>>>> aa178611b85451e345573a0fefc8085a9d78ac94
 Vue.use(VueRouter)
 
 const routes = [
@@ -117,8 +114,6 @@ const routes = [
       }
     },
   },
-
-
   {
     path: '/admin',
     beforeEnter: (to, from, next) => {
