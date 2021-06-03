@@ -27,6 +27,9 @@
     <div class="row justify-center q-my-md">
       <q-btn color="secondary" @click="redirectToManage('venues')" icon-right="groups" label="Manage venues"></q-btn>
     </div>
+    <div class="row justify-center q-my-md">
+      <q-btn color="secondary" @click="redirectTo('/admin/system/notifications')" icon-right="feed" label="Notifications log"></q-btn>
+    </div>
   </q-page>
 </template>
 
@@ -41,6 +44,9 @@ export default {
     redirectToManage(location){
       this.$router.push("/admin/manage/"+location)
     },
+    redirectTo(location){
+      this.$router.push(location);
+    }
   },
 };
 </script>
