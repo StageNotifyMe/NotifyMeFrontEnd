@@ -1,5 +1,6 @@
 <template>
   <q-page>
+    <h3>Currently using app as: Administrator</h3>
     <h2>Organisations</h2>
     <Organisations />
   </q-page>

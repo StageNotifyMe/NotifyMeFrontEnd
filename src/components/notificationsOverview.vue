@@ -32,6 +32,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.notifications = response.data;
+          this.notifications.sort((a,b)=>b.id-a.id)
         })
         .catch((err) =>
           this.$q.notify({

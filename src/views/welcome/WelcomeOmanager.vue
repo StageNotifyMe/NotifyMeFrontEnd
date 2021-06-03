@@ -21,6 +21,9 @@
     <div class="row justify-center q-my-md">
       <q-btn color="secondary" @click="redirectToManage('organisations')" icon-right="groups" label="Manage organisations"></q-btn>
     </div>
+    <div class="row justify-center q-my-md">
+      <q-btn color="secondary" @click="redirectToManage('teamApplications')" icon-right="groups" label="Team applications for events"></q-btn>
+    </div>
   </q-page>
 </template>
 

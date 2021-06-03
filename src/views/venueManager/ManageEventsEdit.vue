@@ -1,5 +1,7 @@
 <template>
   <q-page>
+            <h3>Currently using app as: Venue Manager</h3>
+
     <div class="row justify-center">
       <div class="text-h2 q-ma-md">
         Edit event page | venueId: {{ eventId }}
@@ -33,7 +35,7 @@
 <script>
 import ShowUsers from "../../components/admin/ShowUsers";
 import UserDetailsCard from "../../components/UserDetailsCard";
-import UserSelection from "../../components/admin/UserSelection";
+import UserSelection from "../../components/venueManager/UserSelection";
 import eventRest from "../../rest/eventRest";
 export default {
   name: "ManageEventsEdit",

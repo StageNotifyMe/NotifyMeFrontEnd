@@ -1,5 +1,6 @@
 <template>
   <q-page>
+        <h3>Currently using app as: Administrator</h3>
     <div class="row justify-center">
       <ShowVenues class="q-my-md" @selectedVenue="setSelectedVenue" />
     </div>

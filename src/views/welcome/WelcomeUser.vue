@@ -40,6 +40,14 @@
     <div class="row justify-center q-my-md">
       <q-btn
         color="secondary"
+        @click="redirect('availableLines')"
+        icon-right="groups"
+        label="Available Lines"
+      ></q-btn>
+    </div>
+    <div class="row justify-center q-my-md">
+      <q-btn
+        color="secondary"
         @click="redirectTo('/user/settings')"
         icon-right="account_circle"
         label="Account settings"
@@ -58,6 +66,9 @@ export default {
     },
     redirectToManage(location) {
       this.$router.push("/user/manage/" + location);
+    },
+    redirect(location) {
+      this.$router.push("/user/" + location);
     },
     redirectTo(location) {
       this.$router.push(location);

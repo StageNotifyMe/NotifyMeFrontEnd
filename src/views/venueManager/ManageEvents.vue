@@ -1,5 +1,7 @@
 <template>
   <q-page>
+        <h3>Currently using app as: Venue Manager</h3>
+
     <div class="row justify-center">
       <div class="text-h2">Manage events page</div>
     </div>

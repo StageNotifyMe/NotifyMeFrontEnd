@@ -1,5 +1,7 @@
 <template>
   <q-page>
+            <h3>Currently using app as: Venue Manager</h3>
+
     <div class="row justify-center">
       <h2>Manage facilities | Venue ID: {{ venueId }}</h2>
     </div>

@@ -25,6 +25,8 @@ import ManageUserOrganisations from "../views/user/UserOrganisations.vue"
 import ManageEventsEdit from "../views/venueManager/ManageEventsEdit.vue"
 import ManageCommunicationPreferences from "../views/user/ManageCommunicationPreferences.vue"
 import ManageLinesEdit from "../views/lineManager/ManageLinesEdit.vue"
+import LineApplications from "../views/user/LineApplications.vue"
+import ManageTeamApplications from "../views/organisationManager/ManageTeamApplications.vue"
 import AccountSettings from "../views/user/AccountSettings.vue"
 
 Vue.use(VueRouter)
@@ -91,6 +93,17 @@ const routes = [
     },
   },
   {
+    path: '/user/availableLines',
+    component: LineApplications,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('user')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+  },
+  {
     path: '/user/manage/communicationPreferences',
     component: ManageCommunicationPreferences,
     beforeEnter: (to, from, next) => {
@@ -101,8 +114,6 @@ const routes = [
       }
     },
   },
-
-
   {
     path: '/admin',
     beforeEnter: (to, from, next) => {
@@ -157,6 +168,19 @@ const routes = [
       }
     },
   },
+
+  {
+    path: '/omanager/manage/teamApplications',
+    component: ManageTeamApplications,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('organisation_manager')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+  },
+
   {
     path: '/omanager/manage/organisation/:id',
     component: OrganisationForOManager,

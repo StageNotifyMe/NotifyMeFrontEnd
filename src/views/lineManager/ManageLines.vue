@@ -1,5 +1,6 @@
 <template>
   <q-page>
+    <h3>Currently using app as: Line manager</h3>
     <div class="row justify-center">
       <h2>Manage lines (line manager)</h2>
     </div>
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-import ShowEventLines from "../../components/venueManager/ShowEventLines";
+import ShowEventLines from "../../components/lineManager/ShowEventLines";
 export default {
   props: {
     eventId: {

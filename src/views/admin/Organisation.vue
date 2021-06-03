@@ -1,5 +1,6 @@
 <template>
   <q-page>
+        <h3>Currently using app as: Administrator</h3>
     <h2>Organisation</h2>
     <Organisation v-if="organisation!=null" v-bind:organisation="this.organisation"/>
   </q-page>

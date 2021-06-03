@@ -32,11 +32,17 @@ export default {
     respondToUserApplication(response){
         return axios.post(RESOURCE_PATH_ORGMGR+"userApplication",response,this.getAuthHeader())
     },
+    respondToTeamApplication(application,accept){
+        return axios.post(RESOURCE_PATH_ORGMGR+"teamApplication?accept="+accept,application,this.getAuthHeader())
+    },
     getOrganisationApplications(){
         return axios.get(RESOURCE_PATH_USER+"orgApplications",this.getAuthHeader())
     },
     getUserApplications(orgId){
         return axios.get(RESOURCE_PATH_ORGMGR+"userApplications?organisationId="+orgId,this.getAuthHeader())
+    },
+    getTeamApplications(){
+        return axios.get(RESOURCE_PATH_ORGMGR+"teamApplications",this.getAuthHeader())
     },
     promoteUserToOrgMgr(orgId,username){
         let promotion = {

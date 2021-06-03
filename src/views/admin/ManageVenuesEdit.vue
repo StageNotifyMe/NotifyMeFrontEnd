@@ -1,5 +1,7 @@
 <template>
   <q-page>
+        <h3>Currently using app as: Administrator</h3>
+
     <div class="row justify-center">
       <div class="text-h2 q-ma-md">
         Edit venue page | venueId: {{ venueId }}

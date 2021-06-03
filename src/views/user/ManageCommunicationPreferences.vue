@@ -1,5 +1,7 @@
 <template>
   <q-page>
+    <h3>Currently using app as: Regular user/member</h3>
+
     <h1>COMMUNICATION PREFERENCES</h1>
     <div class="row justify-center">
       <ShowComPref @selectedComPref="setSelectedComPref" />
