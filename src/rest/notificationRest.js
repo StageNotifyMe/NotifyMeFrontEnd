@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const RESOURCE_PATH = 'http://localhost:8085/user/'
 const RESOURCE_PATH_LMANAGER = 'http://localhost:8085/lmanager/'
+const RESOURCE_PATH_ADMIN = 'http://localhost:8085/admin/'
 
 
 export default {
@@ -19,5 +20,8 @@ export default {
     },
     lmanagerNotifyOmanager(message) {
         return axios.post(RESOURCE_PATH_LMANAGER + "notify/organisation", message, cookieFunctions.getAuthHeaderJSON());
+    },
+    getAllNotifications() {
+        return axios.get(RESOURCE_PATH_ADMIN + "notifications", cookieFunctions.getAuthHeaderJSON());
     }
 }
