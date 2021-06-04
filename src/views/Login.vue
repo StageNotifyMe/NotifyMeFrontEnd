@@ -29,7 +29,7 @@
           <q-card-actions class="q-px-md">
             <q-btn
               unelevated
-              color="light-green-7"
+              color="secondary"
               size="lg"
               class="full-width"
               label="Login"
@@ -37,7 +37,9 @@
             />
           </q-card-actions>
           <q-card-section class="text-center q-pa-none">
-            <p class="text-grey-6">Not registered? Created an Account</p>
+            <p class="text-grey-6">
+              Not registered? <br> <q-btn label="Register here" color="primary" flat @click="redirectToRegister()" />
+            </p>
           </q-card-section>
         </q-card>
       </div>
@@ -74,6 +76,12 @@ export default {
       let role = cookieFun.getRoles()[0];
       this.$router.push({ path: "/" + role + "/welcome" });
     },
+
+    redirectToRegister(){
+      this.$router.push("/register")
+    }
   },
+
+  components: {},
 };
 </script>

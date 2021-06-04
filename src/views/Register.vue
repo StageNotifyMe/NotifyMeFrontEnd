@@ -69,7 +69,7 @@
           <q-card-actions class="q-px-md">
             <q-btn
               unelevated
-              color="light-green-7"
+              color="secondary"
               size="lg"
               class="full-width"
               label="Register"
@@ -80,7 +80,7 @@
             <q-btn
               label="Login instead"
               unelevated
-              color="light-blue-7"
+              color="primary"
               @click="redirectToLogin()"
             />
           </q-card-section>
