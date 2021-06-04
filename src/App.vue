@@ -129,7 +129,7 @@
 
     <q-page-container>
       <q-dialog v-if="isLoggedIn()" v-model="notificationDialogue">
-        <notificationsOverview />
+        <notificationsOverview class="q-ma-lg"/>
       </q-dialog>
       <router-view></router-view>
     </q-page-container>

@@ -1,21 +1,29 @@
 <template>
-<div style="background: white;width: 100%">
+  <div class="overview-background">
     <h2>Notifications</h2>
-    <q-list bordered v-if="this.notifications != null">
+    <q-list bordered v-if="this.notifications != null" >
       <q-card
         v-for="notification in this.notifications"
         v-bind:key="notification.id"
       >
-      <q-card-section style="width:100%; background: white">
-          <div class="text-h7">{{notification.message.title}}</div>
+        <q-card-section style="width: 100%; background: white">
+          <div class="text-h7">{{ notification.message.title }}</div>
           <div class="text-caption text-grey">
-            {{notification.message.text}}
+            {{ notification.message.text }}
           </div>
         </q-card-section>
       </q-card>
     </q-list>
-</div>
+  </div>
 </template>
+<style scoped>
+.overview-background {
+  background: white;
+  width: 100%;
+  height: 60%;
+}
+</style>
+
 <script>
 import notificationRest from "../rest/notificationRest";
 export default {
@@ -32,7 +40,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.notifications = response.data;
-          this.notifications.sort((a,b)=>b.id-a.id)
+          this.notifications.sort((a, b) => b.id - a.id);
         })
         .catch((err) =>
           this.$q.notify({
