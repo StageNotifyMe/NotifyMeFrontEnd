@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="row justify-center">
-      <h2>Welcome screen for line managers</h2>
+      <h2>Line manage - Home</h2>
     </div>
 
     <div class="row justify-center">
