@@ -3,58 +3,6 @@
     <div class="row justify-center">
       <h2>User - Home</h2>
     </div>
-<<<<<<< HEAD
-    <div class="row justify-center">
-      <p>user has user role: {{ hasRole("user") }}</p>
-    </div>
-    <div class="row justify-center">
-      <p>user has admin role: {{ hasRole("admin") }}</p>
-    </div>
-    <div class="row justify-center">
-      <p>user has venue_manager role: {{ hasRole("venue_manager") }}</p>
-    </div>
-    <div class="row justify-center">
-      <p>user has line_manager role: {{ hasRole("line_manager") }}</p>
-    </div>
-    <div class="row justify-center">
-      <p>
-        user has organisation_manager role:
-        {{ hasRole("organisation_manager") }}
-      </p>
-    </div>
-    <div class="row justify-center q-my-md">
-      <q-btn
-        color="secondary"
-        @click="redirectToManage('organisations')"
-        icon-right="groups"
-        label="Manage organisations"
-      ></q-btn>
-    </div>
-    <div class="row justify-center q-my-md">
-      <q-btn
-        color="secondary"
-        @click="redirectToManage('communicationPreferences')"
-        icon-right="notifications"
-        label="Notification settings"
-      ></q-btn>
-    </div>
-    <div class="row justify-center q-my-md">
-      <q-btn
-        color="secondary"
-        @click="redirect('availableLines')"
-        icon-right="groups"
-        label="Teams"
-      ></q-btn>
-    </div>
-    <div class="row justify-center q-my-md">
-      <q-btn
-        color="secondary"
-        @click="redirectTo('/user/settings')"
-        icon-right="account_circle"
-        label="Account settings"
-      ></q-btn>
-=======
-
     <div class="row justify-center q-ma-md">
       <div class="column col-3 q-ma-md">
         <q-card dark bordered class="bg-secondary my-card">
@@ -167,7 +115,6 @@
           </q-card-section>
         </q-card>
       </div>
->>>>>>> 5d8eb4496bf8c46377624146e81f3ee4356c5c14
     </div>
   </q-page>
 </template>
