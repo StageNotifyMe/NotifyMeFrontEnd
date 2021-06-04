@@ -28,6 +28,7 @@ import ManageLinesEdit from "../views/lineManager/ManageLinesEdit.vue"
 import LineApplications from "../views/user/LineApplications.vue"
 import ManageTeamApplications from "../views/organisationManager/ManageTeamApplications.vue"
 import AccountSettings from "../views/user/AccountSettings.vue"
+import SystemNotificationsBoard from "../views/admin/SystemNotificationsBoard.vue"
 
 Vue.use(VueRouter)
 
@@ -142,6 +143,18 @@ const routes = [
       }
     },
     component: ManageOrganisations,
+
+  },
+  {
+    path: '/admin/system/notifications',
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('admin')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+    component: SystemNotificationsBoard,
 
   },
   {
