@@ -1,13 +1,13 @@
 <template>
   <q-page>
-    <h3>Currently using app as: Line manager</h3>
+    <BreadCrumbs :locations="['Line Manager','Manage','Lines']"/>
     <div class="row justify-center">
-      <h2>Manage lines (line manager)</h2>
+      <h2>Manage lines</h2>
     </div>
     <div class="row justify-center">
       <ShowEventLines
         :eventId="parseInt(eventId)"
-        class="q-ma-md"
+        class="q-ma-md show-table"
         @selectedLine="setSelectedLine"
       />
     </div>
@@ -21,6 +21,8 @@
 
 <script>
 import ShowEventLines from "../../components/lineManager/ShowEventLines";
+import BreadCrumbs from "../../components/BreadCrumbs"
+
 export default {
   props: {
     eventId: {
@@ -66,6 +68,7 @@ export default {
 
   components: {
     ShowEventLines,
+    BreadCrumbs,
   },
 };
 </script>

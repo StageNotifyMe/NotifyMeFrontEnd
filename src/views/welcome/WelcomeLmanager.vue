@@ -5,7 +5,7 @@
     </div>
 
     <div class="row justify-center">
-      <ShowEvents :userId="getUserId()" @selectedEvent="setSelectedEvent" />
+      <ShowEvents :userId="getUserId()" @selectedEvent="setSelectedEvent"  class="show-table"/>
     </div>
     <div class="row justify-center">
       <div class="column">
