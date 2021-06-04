@@ -1,7 +1,8 @@
 <template>
   <q-page>
+    <BreadCrumbs :locations="['Admin', 'System', 'Notifications']" />
     <q-card class="q-ma-md">
-      <q-card-section>
+      <q-card-section class="bg-secondary text-white">
         <div class="row justify-center">
           <div class="text-h3">System notifications</div>
         </div>
@@ -25,6 +26,8 @@
         <div class="row justify-center">
           <div class="q-pa-md">
             <q-table
+            style="width: 105em"
+              flat
               class="my-sticky-virtscroll-table"
               virtual-scroll
               :pagination.sync="pagination"
@@ -44,6 +47,8 @@
 
 <script>
 import notificationRest from "../../rest/notificationRest";
+import BreadCrumbs from "../../components/BreadCrumbs";
+
 export default {
   name: "AdminNotificationsPage",
   data() {
@@ -147,6 +152,8 @@ export default {
   beforeMount() {
     this.loadNotifications();
   },
-  components: {},
+  components: {
+    BreadCrumbs,
+  },
 };
 </script>

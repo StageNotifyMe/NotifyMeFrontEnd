@@ -1,7 +1,8 @@
 <template>
   <q-page>
-    <q-card class="q-ma-md">
-      <q-card-section class="q-pt-s">
+    <BreadCrumbs :locations="['User','Settings']"/>
+    <q-card class="q-ma-lg">
+      <q-card-section class="q-pt-s bg-secondary text-white">
         <div class="row justify-center">
           <div class="text-h3">Account info</div>
         </div>
@@ -137,6 +138,7 @@
 </template>
 <script>
 import userRest from "../../rest/userRest";
+import BreadCrumbs from "../../components/BreadCrumbs"
 export default {
   name: "AccountSettings",
   data() {
@@ -235,6 +237,8 @@ export default {
   beforeMount() {
     this.getAccountInfo();
   },
-  components: {},
+  components: {
+    BreadCrumbs,
+  },
 };
 </script>

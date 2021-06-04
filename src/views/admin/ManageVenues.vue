@@ -1,8 +1,11 @@
 <template>
   <q-page>
-        <h3>Currently using app as: Administrator</h3>
+    <BreadCrumbs :locations="['Admin','Manage','Venues']"/>
     <div class="row justify-center">
-      <ShowVenues class="q-my-md" @selectedVenue="setSelectedVenue" />
+      <div class="text-h3">Venues</div>
+    </div>
+    <div class="row justify-center">
+      <ShowVenues class="q-my-md show-table" @selectedVenue="setSelectedVenue" />
     </div>
     <div class="row justify-center">
       <q-btn
@@ -23,6 +26,8 @@
 <script>
 import CreateVenue from "../../components/admin/CreateVenue";
 import ShowVenues from "../../components/venueManager/ShowVenues";
+import BreadCrumbs from "../../components/BreadCrumbs"
+
 export default {
   data() {
     return {
@@ -49,6 +54,7 @@ export default {
   components: {
     CreateVenue,
     ShowVenues,
+    BreadCrumbs
   },
 };
 </script>

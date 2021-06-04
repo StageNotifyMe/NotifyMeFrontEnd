@@ -1,10 +1,11 @@
 <template>
   <q-page>
-    <h3>Currently using app as: Regular user/member</h3>
-
-    <h1>COMMUNICATION PREFERENCES</h1>
+    <BreadCrumbs :locations="['User','Manage','Communication preferences']"/>
+    <div class="row justify-center q-ma-lg">
+      <div class="text-h3">Communication Preferences</div>
+    </div>
     <div class="row justify-center">
-      <ShowComPref @selectedComPref="setSelectedComPref" />
+      <ShowComPref @selectedComPref="setSelectedComPref"  class="show-table"/>
     </div>
     <div class="row justify-center">
       <div
@@ -76,7 +77,8 @@
           selectedComPref !== null &&
           selectedComPref !== undefined &&
           selectedComPref != ''
-        ">
+        "
+      >
         <q-btn
           v-if="selectedComPref.urgent != true"
           unelevated
@@ -99,6 +101,7 @@ import ShowComPref from "../../components/user/ShowCommunicationPreferences";
 import cookieFunctions from "../../javascript/cookieFunctions";
 import communicationPreferencesRest from "../../rest/communicationPreferencesRest";
 import createCommunicationPreference from "../../components/user/CreateCommunicationPreference";
+import BreadCrumbs from "../../components/BreadCrumbs"
 
 export default {
   name: "ManageCommunicationPreferences",
@@ -123,7 +126,7 @@ export default {
       let updatedComPref = this.selectedComPref;
       updatedComPref.active = !this.selectedComPref.active;
       updatedComPref.urgent = !this.selectedComPref.urgent;
-      console.log("Updating pref: "+JSON.stringify(updatedComPref))
+      console.log("Updating pref: " + JSON.stringify(updatedComPref));
       communicationPreferencesRest
         .updateCommunicationPreference(updatedComPref)
         .catch((error) => {
@@ -168,6 +171,7 @@ export default {
   components: {
     ShowComPref,
     createCommunicationPreference,
+    BreadCrumbs,
   },
 };
 </script>

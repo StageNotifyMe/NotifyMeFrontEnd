@@ -1,7 +1,6 @@
 <template>
   <q-page>
-        <h3>Currently using app as: Administrator</h3>
-
+<BreadCrumbs :locations="['Admin','Manage','Venues', 'Edit']"/>
     <div class="row justify-center">
       <div class="text-h2 q-ma-md">
         Edit venue page | venueId: {{ venueId }}
@@ -24,7 +23,7 @@
       </div>
     </div>
     <div class="row justify-center">
-      <ShowUsers :users="venueManagers" :title="'Venue managers'" class="q-my-md" />
+      <ShowUsers :users="venueManagers" :title="'Venue managers'" class="q-my-md show-table" />
     </div>
   </q-page>
 </template>
@@ -34,6 +33,8 @@ import UserDetailsCard from "../../components/UserDetailsCard";
 import UserSelection from "../../components/admin/UserSelection";
 import ShowUsers from "../../components/admin/ShowUsers";
 import venRest from "../../rest/venueRest";
+import BreadCrumbs from "../../components/BreadCrumbs"
+
 export default {
   name: "ManageVenuesEdit",
   props: {
@@ -106,6 +107,7 @@ export default {
     UserSelection,
     UserDetailsCard,
     ShowUsers,
+    BreadCrumbs,
   },
 };
 </script>

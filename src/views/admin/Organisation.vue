@@ -1,20 +1,29 @@
 <template>
   <q-page>
-        <h3>Currently using app as: Administrator</h3>
-    <h2>Organisation</h2>
-    <Organisation v-if="organisation!=null" v-bind:organisation="this.organisation"/>
+    <BreadCrumbs :locations="['Admin', 'Manage', 'Organisations', 'Edit']" />
+    <div class="row justify-center">
+      <div class="text-h3">Organisation</div>
+    </div>
+    <div class="row justify-center q-ma-md">
+      <Organisation style="width: 30em"
+        v-if="organisation != null"
+        v-bind:organisation="this.organisation"
+      />
+    </div>
   </q-page>
 </template>
 
 <script>
-import Organisation from "../../components/admin/Organisation"
+import Organisation from "../../components/admin/Organisation";
 import organisationRest from "../../rest/organisationRest";
+import BreadCrumbs from "../../components/BreadCrumbs";
+
 export default {
   props: {
     id: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -22,7 +31,8 @@ export default {
     };
   },
   components: {
-    Organisation
+    Organisation,
+    BreadCrumbs,
   },
   methods: {
     getOrganisation() {
@@ -31,9 +41,9 @@ export default {
       });
     },
   },
-  beforeMount(){
+  beforeMount() {
     this.getOrganisation();
-  }
+  },
 };
 </script>
 <style>
