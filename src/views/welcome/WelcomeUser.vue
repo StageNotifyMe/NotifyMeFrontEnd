@@ -42,7 +42,7 @@
         color="secondary"
         @click="redirect('availableLines')"
         icon-right="groups"
-        label="Available Lines"
+        label="Teams"
       ></q-btn>
     </div>
     <div class="row justify-center q-my-md">

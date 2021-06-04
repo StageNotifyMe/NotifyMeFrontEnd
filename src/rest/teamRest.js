@@ -42,4 +42,5 @@ export default {
     deleteOrganisationFromTeam(teamId, orgId) {
         return axios.delete(RESOURCE_PATH_LMANAGER + "team/organisation?teamId=" + teamId + "&organisationId=" + orgId, cookieFunctions.getAuthHeaderJSON());
     }
+    
 }
