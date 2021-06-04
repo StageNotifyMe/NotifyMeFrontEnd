@@ -3,7 +3,6 @@
     <div class="row justify-center">
       <h2>User - Home</h2>
     </div>
-
     <div class="row justify-center q-ma-md">
       <div class="column col-3 q-ma-md">
         <q-card dark bordered class="bg-secondary my-card">

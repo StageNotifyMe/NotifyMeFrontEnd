@@ -21,7 +21,7 @@
           @click="sendTeamApplication(line.team.id)"
         />
       </q-card-section>
-        <q-card-section class="q-pt-none" v-if="checkApplicationExist(line.team.id)">
+        <q-card-section class="q-pt-none" v-if="checkApplicationExist(line.team.id) && !checkApplicationIsRefused(line.team.id)">
         <q-btn
           unelevated
           rounded
@@ -31,6 +31,9 @@
           class="q-ma-md"
           @click="sendTeamApplication(line.team.id)"
         />
+      </q-card-section>
+      <q-card-section class="q-pt-none" v-if="checkApplicationExist(line.team.id) && checkApplicationIsRefused(line.team.id)">
+        <p>Your application was already refused.</p>
       </q-card-section>
       </q-card>
 </div>
@@ -61,6 +64,11 @@ export default {
     },
     checkApplicationExist(teamId){
       let foundApplication=this.teamApplications.find(ta=>ta.appliedTeam.id==teamId);
+      console.log(foundApplication)
+      return foundApplication!=null
+  },
+  checkApplicationIsRefused(teamId){
+      let foundApplication=this.teamApplications.find(ta=>ta.appliedTeam.id==teamId && ta.applicationStatus=="REFUSED");
       console.log(foundApplication)
       return foundApplication!=null
   },

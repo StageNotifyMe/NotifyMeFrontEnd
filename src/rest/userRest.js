@@ -25,7 +25,18 @@ export default {
         var username = JSON.parse(cookieFunctions.getCookie("user_info")).username
         return axios.get(RESOURCE_PATH_USER + "account?username=" + username, cookieFunctions.getAuthHeaderJSON());
     },
+    getTeamsForUser(){
+        return axios.get(RESOURCE_PATH_USER + "teams", {
+            headers: {
+                "Authorization": "Bearer " + cookieFunctions.readCookie("access_token"),
+                "Content-Type": "application/json"
+            }
+        })
+    },
     putAccountInfo(body) {
         return axios.put(RESOURCE_PATH_USER + "account", body, cookieFunctions.getAuthHeaderJSON());
+    },
+    deleteUserFromTeam(teamId){
+        return axios.delete(RESOURCE_PATH_USER + "team?teamId="+teamId, cookieFunctions.getAuthHeaderJSON());
     }
 }
