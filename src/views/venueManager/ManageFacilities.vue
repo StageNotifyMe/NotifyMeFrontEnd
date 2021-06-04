@@ -1,7 +1,6 @@
 <template>
   <q-page>
-            <h3>Currently using app as: Venue Manager</h3>
-
+    <BreadCrumbs :locations="['Venue Manager','Manage','Facilites', 'Edit']"/>
     <div class="row justify-center">
       <h2>Manage facilities | Venue ID: {{ venueId }}</h2>
     </div>
@@ -22,6 +21,8 @@
 import ManageFacilities from "../../components/venueManager/facilities/ShowFacilities";
 import CreateFacility from "../../components/venueManager/facilities/CreateFacility";
 import venueRest from "../../rest/venueRest";
+import BreadCrumbs from "../../components/BreadCrumbs"
+
 export default {
   data() {
     return {
@@ -43,6 +44,7 @@ export default {
   components: {
     ManageFacilities,
     CreateFacility,
+    BreadCrumbs,
   },
 };
 </script>
