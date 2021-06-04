@@ -1,16 +1,20 @@
 <template>
   <q-page>
-    <h3>Currently using app as: Organisation manager</h3>
-    <h2>Organisations</h2>
-    <Organisations />
+<BreadCrumbs :locations="['Organisation Manager','Manage','Organisations']"/>
+<div class="row justify-center">
+<div class="text-h3">Organisations</div>
+</div>
+    <Organisations class="q-ma-lg" />
   </q-page>
 </template>
 
 <script>
 import Organisations from "../../components/organisationManager/Organisations"
+import BreadCrumbs from "../../components/BreadCrumbs"
 export default {
 components:{
-    Organisations
+    Organisations,
+    BreadCrumbs,
 },
 }
 </script>
