@@ -11,11 +11,20 @@
           icon="menu"
         />
 
-        <q-toolbar-title> NotifyMe </q-toolbar-title>
+        <q-toolbar-title>
+          <span class="q-mt-sm">NotifyMe</span>
+          <q-icon name="notifications" @click="notificationDialogue = true"  size="md" class="q-ml-sm"/>
+        </q-toolbar-title>
 
-        <div @click="redirect('/user/settings')">
-          <q-icon name="account_circle" />
+        <div>
           {{ showUserName() }}
+          <q-icon
+            name="account_circle"
+            @click="redirect('/user/settings')"
+            class="q-ml-md"
+            size="md"
+          />
+          <q-icon name="logout" @click="logOut()" class="q-ml-md" size="md" />
         </div>
       </q-toolbar>
     </q-header>
@@ -27,7 +36,7 @@
       content-class="bg-grey-2"
     >
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
+        <q-item-label header>Website navigation</q-item-label>
         <q-item clickable @click="redirect('login')" v-if="!isLoggedIn()">
           <q-item-section avatar>
             <q-icon name="account" />
@@ -119,11 +128,6 @@
     </q-drawer>
 
     <q-page-container>
-      <q-btn
-        v-if="isLoggedIn()"
-        label="Notifications"
-        @click="notificationDialogue = true"
-      ></q-btn>
       <q-dialog v-if="isLoggedIn()" v-model="notificationDialogue">
         <notificationsOverview />
       </q-dialog>
@@ -135,6 +139,7 @@
 <script>
 import cookieFun from "./javascript/cookieFunctions";
 import notificationsOverview from "./components/notificationsOverview";
+import cookieFunctions from "./javascript/cookieFunctions";
 
 export default {
   name: "LayoutDefault",
@@ -157,6 +162,11 @@ export default {
     },
     hasRole(role) {
       return cookieFun.hasRole(role);
+    },
+
+    logOut() {
+      cookieFunctions.logOut();
+      this.$router.push("/login");
     },
   },
 

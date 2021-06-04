@@ -61,6 +61,15 @@ export default {
             .catch((error) => console.log(error))
     },
 
+    logOut(){
+        this.deleteCookie("user_info");
+        this.deleteCookie("access_token");
+    },
+
+    deleteCookie(cookieName){
+        document.cookie = cookieName+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    },
+
     readCookie(name) {
         var nameEQ = name + "=";
         var ca = document.cookie.split(';');
