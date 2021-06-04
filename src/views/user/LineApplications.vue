@@ -1,10 +1,10 @@
 <template>
-  <q-page>
+  <q-page :key="this.key">
         <h3>Currently using app as: Regular user/member</h3>
     <h2>Available Lines</h2>
-    <AvailableLines :key="this.key" />
+    <AvailableLines />
     <h2>Your teams</h2>
-    <Teams :key="this.key" v-on:refresh="updateKey()"/>
+    <Teams v-on:refresh="updateKey()"/>
   </q-page>
 </template>
 
@@ -19,7 +19,7 @@ components:{
 },
 data(){
   return{
-    key: 0
+    key: 1
   }
 },
 methods:{
