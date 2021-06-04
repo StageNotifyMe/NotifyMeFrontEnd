@@ -1,6 +1,7 @@
 <template>
   <q-page>
-    <q-card class="q-ma-xl">
+    <BreadCrumbs :locations="['User','Manage','Organisations']"/>
+    <q-card class="q-ma-xl" flat>
       <q-card-section>
         <div class="row justify-center">
           <div class="text-h3 q-ma-lg">Organisations</div>
@@ -30,11 +31,13 @@
 <script>
 import ApplyToOrganisation from "../../components/user/ApplyToOrganisation";
 import ApplicationList from "../../components/user/ApplicationList";
+import BreadCrumbs from "../../components/BreadCrumbs"
 
 export default {
   components: {
     ApplyToOrganisation,
     ApplicationList,
+    BreadCrumbs,
   },
 };
 </script>
