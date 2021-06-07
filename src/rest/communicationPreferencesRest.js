@@ -1,7 +1,7 @@
 import axios from 'axios'
 import cookieFunctions from '../javascript/cookieFunctions.js'
 
-const RESOURCE_PATH_USER = 'http://localhost:8085/user/'
+const RESOURCE_PATH_USER = 'http://groupbavomain-app-env.eba-hf2p3xzd.eu-west-1.elasticbeanstalk.com/user/'
 
 export default {
     getAllCommunicationPreferences() {

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import cookieFunctions from '../javascript/cookieFunctions.js'
 
-const RESOURCE_PATH_LMANAGER = 'http://localhost:8085/lmanager/'
+const RESOURCE_PATH_LMANAGER = 'http://groupbavomain-app-env.eba-hf2p3xzd.eu-west-1.elasticbeanstalk.com/lmanager/'
 
 export default {
     getTeam(teamId) {

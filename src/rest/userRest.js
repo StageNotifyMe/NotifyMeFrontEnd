@@ -1,9 +1,9 @@
 import axios from 'axios'
 import cookieFunctions from '../javascript/cookieFunctions.js'
 
-const RESOURCE_PATH_ADMIN = 'http://localhost:8085/admin/'
-const RESOURCE_PATH_VMANAGER = 'http://localhost:8085/vmanager/'
-const RESOURCE_PATH_USER = 'http://localhost:8085/user/'
+const RESOURCE_PATH_ADMIN = 'http://groupbavomain-app-env.eba-hf2p3xzd.eu-west-1.elasticbeanstalk.com/admin/'
+const RESOURCE_PATH_VMANAGER = 'http://groupbavomain-app-env.eba-hf2p3xzd.eu-west-1.elasticbeanstalk.com/vmanager/'
+const RESOURCE_PATH_USER = 'http://groupbavomain-app-env.eba-hf2p3xzd.eu-west-1.elasticbeanstalk.com/user/'
 
 export default {
     getUsers() {

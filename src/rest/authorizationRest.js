@@ -1,7 +1,7 @@
 import axios from 'axios'
 //const qs = require('querystring')
 
-const RESOURCE_PATH = 'http://localhost:8085/user/'
+const RESOURCE_PATH = 'http://groupbavomain-app-env.eba-hf2p3xzd.eu-west-1.elasticbeanstalk.com/user/'
 
 export default {
     getToken(username, password) {
