@@ -28,6 +28,7 @@
               @click="redirectToManage('organisations')"
               icon-right="edit"
               label="Manage organisations"
+              unelevated
             ></q-btn>
           </q-card-section>
         </q-card>
@@ -55,6 +56,7 @@
               @click="redirectToManage('communicationPreferences')"
               icon-right="edit"
               label="Manage notifications"
+              unelevated
             ></q-btn>
           </q-card-section>
         </q-card>
@@ -84,6 +86,7 @@
               @click="redirect('availableLines')"
               icon-right="visibility"
               label="View available lines"
+              unelevated
             ></q-btn>
           </q-card-section>
         </q-card>
@@ -111,6 +114,7 @@
               @click="redirectTo('/user/settings')"
               icon-right="edit"
               label="Update account"
+              unelevated
             ></q-btn>
           </q-card-section>
         </q-card>

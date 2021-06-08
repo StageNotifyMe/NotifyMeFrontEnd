@@ -1,15 +1,14 @@
 <template>
   <q-page>
-            <h3>Currently using app as: Venue Manager</h3>
-
+    <BreadCrumbs :locations="['Line Manager','Manage','Lines']"/>
     <div class="row justify-center">
-      <h2>Manage lines (venue manager)</h2>
+      <h3>Manage lines</h3>
     </div>
     <div class="row justify-center">
-      <ShowEventLines :eventId="parseInt(eventId)" class="q-ma-md"/>
+      <ShowEventLines :eventId="parseInt(eventId)" class="q-ma-md show-table"/>
     </div>
     <div class="row justify-center">
-      <CreateLine :eventId="parseInt(eventId)" />
+      <CreateLine :eventId="parseInt(eventId)" class="show-table" />
     </div>
   </q-page>
 </template>
@@ -17,6 +16,8 @@
 <script>
 import CreateLine from "../../components/venueManager/CreateLine";
 import ShowEventLines from "../../components/venueManager/ShowEventLines";
+import BreadCrumbs from "../../components/BreadCrumbs"
+
 export default {
   props: {
     eventId: {
@@ -36,6 +37,7 @@ export default {
   components: {
     CreateLine,
     ShowEventLines,
+    BreadCrumbs,
   },
 };
 </script>

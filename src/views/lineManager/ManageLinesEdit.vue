@@ -1,13 +1,14 @@
 <template>
   <q-page>
+    <BreadCrumbs :locations="['Line Manager', 'Manage', 'Lines', 'Edit']" />
     <div class="row justify-center">
-      <div class="text-h3">Edit line/team | LineId: {{ lineId }}</div>
+      <div class="text-h3 q-ma-md">Edit line/team | LineId: {{ lineId }}</div>
     </div>
     <div class="row justify-center q-my-lg">
       <ShowOrganisations
+        class="show-table"
         :organisations="team.organisations"
         :title="'Assigned organisations'"
-        style="width: 40em"
         @selectedOrganisation="setSelectedOrg"
       />
     </div>
@@ -36,9 +37,9 @@
     </div>
     <div class="row justify-center">
       <ShowOrganisations
+        class="show-table"
         :organisations="availableOrgs"
         :title="'Assignable organisations'"
-        style="width: 40em"
         @selectedOrganisation="setSelectedAvOrg"
       />
     </div>
@@ -68,6 +69,8 @@
 import ShowOrganisations from "../../components/lineManager/ShowOrganisations";
 import CreateNotification from "../../components/lineManager/CreateNotification";
 import teamRest from "../../rest/teamRest";
+import BreadCrumbs from "../../components/BreadCrumbs";
+
 export default {
   name: "ManageLinesEdit",
   props: {
@@ -176,6 +179,7 @@ export default {
   components: {
     ShowOrganisations,
     CreateNotification,
+    BreadCrumbs,
   },
 };
 </script>

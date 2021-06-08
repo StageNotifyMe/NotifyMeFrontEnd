@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated class="glossy">
+    <q-header elevated class="bg-primary">
       <q-toolbar>
         <q-btn
           flat
@@ -129,7 +129,7 @@
 
     <q-page-container>
       <q-dialog v-if="isLoggedIn()" v-model="notificationDialogue">
-        <notificationsOverview />
+        <notificationsOverview class="q-ma-lg"/>
       </q-dialog>
       <router-view></router-view>
     </q-page-container>

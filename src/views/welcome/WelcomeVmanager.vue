@@ -28,6 +28,7 @@
               @click="redirect('manage/events')"
               icon-right="edit"
               label="Manage events"
+              unelevated
             ></q-btn>
           </q-card-section>
         </q-card>
@@ -35,7 +36,7 @@
     </div>
 
     <div class="row justify-center">
-      <ShowVenues class="q-ma-lg" @selectedVenue="setSelectedVenue" />
+      <ShowVenues class="q-ma-lg show-table" @selectedVenue="setSelectedVenue" />
     </div>
     <div class="row justify-center">
       <div class="column q-mx-md">

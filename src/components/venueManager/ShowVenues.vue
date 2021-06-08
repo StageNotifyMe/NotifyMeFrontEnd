@@ -38,7 +38,7 @@ export default {
     };
   },
 
-  created() {
+  beforeMount() {
     this.userInfo = JSON.parse(cookieFun.getCookie("user_info"));
     venRest.getAllVenues(this.userInfo.id).then((result) => {
       for (let venue of result.data) {

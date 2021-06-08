@@ -26,6 +26,7 @@
               @click="redirectToManage('organisations')"
               icon-right="edit"
               label="Manage organisations"
+              unelevated
             ></q-btn>
           </q-card-section>
         </q-card>
@@ -51,6 +52,7 @@
               @click="redirectToManage('venues')"
               icon-right="edit"
               label="Manage venues"
+              unelevated
             ></q-btn>
           </q-card-section>
         </q-card>
@@ -76,6 +78,7 @@
               @click="redirectTo('/admin/system/notifications')"
               icon-right="feed"
               label="Notifications log"
+              unelevated
             ></q-btn>
           </q-card-section>
         </q-card>

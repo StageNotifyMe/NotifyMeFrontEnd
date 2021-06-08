@@ -1,15 +1,14 @@
 <template>
   <q-page>
-        <h3>Currently using app as: Venue Manager</h3>
-
-    <div class="row justify-center">
-      <div class="text-h2">Manage events page</div>
+    <BreadCrumbs :locations="['Venue Manager', 'Manage', 'Events']" />
+    <div class="row justify-center q-ma-lg">
+      <div class="text-h3">Manage events</div>
     </div>
     <div class="row justify-center">
       <ShowEvents
         :userId="getUserId()"
         @selectedEvent="setSelectedEvent"
-        class="q-my-md"
+        class="q-my-md show-table"
       />
     </div>
     <div
@@ -98,6 +97,8 @@ import CreateEvent from "../../components/venueManager/CreateEvent";
 import ShowEvents from "../../components/lineManager/ShowEvents";
 import cookieFun from "../../javascript/cookieFunctions";
 import eventRest from "../../rest/eventRest";
+import BreadCrumbs from "../../components/BreadCrumbs";
+
 export default {
   data() {
     return {
@@ -175,6 +176,7 @@ export default {
   components: {
     CreateEvent,
     ShowEvents,
+    BreadCrumbs,
   },
 };
 </script>

@@ -28,6 +28,7 @@
               @click="redirectToManage('organisations')"
               icon-right="edit"
               label="Manage organisations"
+              unelevated
             ></q-btn>
           </q-card-section>
         </q-card>
@@ -55,6 +56,7 @@
               @click="redirectToManage('teamApplications')"
               icon-right="edit"
               label="Team applications for events"
+              unelevated
             ></q-btn>
           </q-card-section>
         </q-card>
