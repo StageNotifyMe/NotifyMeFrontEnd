@@ -46,7 +46,6 @@ export default {
       });
     },
     emitSelected() {
-      console.log(this.selected[0]);
       this.$emit("selectedEvent", this.selected[0]);
     },
   },
@@ -77,10 +76,21 @@ export default {
         },
         {
           name: "dateTime",
-          field: "dateTime",
           label: "Date and time",
-          align: "left",
-          sortable: true,
+          field: (row) => {
+            let date = new Date(row.dateTime);
+            return (
+              date.getDate() +
+              "/" +
+              date.getMonth() +
+              "/" +
+              date.getFullYear() +
+              " " +
+              date.getHours() +
+              ":" +
+              date.getMinutes()
+            );
+          },
         },
         {
           name: "status",
