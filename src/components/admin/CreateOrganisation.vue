@@ -37,12 +37,12 @@
             </q-card-section>
           </q-card>
         </q-dialog>
-      </div> </template
-  >
+      </div>
+    </template>
   </div>
 </template>
 <style scoped>
-.createOrgForm{
+.createOrgForm {
   min-height: 20%;
   max-height: 20%;
 }
@@ -59,14 +59,20 @@ export default {
     };
   },
   methods: {
+    sendRefresh() {
+      this.$emit("sendRefresh");
+    },
     onSubmit() {
-      organisationRest.createOrganisation(this.name).then((response) => {
-        console.log(response);
-      }).catch((err)=>{
-        console.log(err)
-        this.errorText = err.response.data;
+      organisationRest
+        .createOrganisation(this.name)
+        .then(() => {
+          this.sendRefresh();
+        })
+        .catch((err) => {
+          console.log(err);
+          this.errorText = err.response.data;
           this.seamless = true;
-      });
+        });
     },
   },
 };

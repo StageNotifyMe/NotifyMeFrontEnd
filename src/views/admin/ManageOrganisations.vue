@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <BreadCrumbs :locations="['Admin','Manage','Organisations']"/>
+    <BreadCrumbs :locations="['Admin', 'Manage', 'Organisations']" />
     <div class="row justify-center">
       <div class="text-h3">Organisations</div>
     </div>
@@ -9,16 +9,25 @@
 </template>
 
 <script>
-import Organisations from "../../components/admin/Organisations"
-import BreadCrumbs from "../../components/BreadCrumbs"
+import Organisations from "../../components/admin/Organisations";
+import BreadCrumbs from "../../components/BreadCrumbs";
 
 export default {
-components:{
+  data() {
+    return {
+      refreshTable: false,
+    };
+  },
+  methods: {
+    sendRefresh() {
+      this.refreshTable = !this.refreshTable;
+    },
+  },
+  components: {
     Organisations,
-    BreadCrumbs
-},
-}
+    BreadCrumbs,
+  },
+};
 </script>
 <style>
-
 </style>
