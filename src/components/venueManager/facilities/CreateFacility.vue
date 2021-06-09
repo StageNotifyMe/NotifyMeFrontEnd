@@ -51,6 +51,9 @@ export default {
     },
   },
   methods: {
+    sendRefresh() {
+      this.$emit("sendRefresh");
+    },
     postFacility() {
       this.minimalStaff = parseInt(this.minimalStaff);
       this.maximalStaff = parseInt(this.maximalStaff);
@@ -64,7 +67,9 @@ export default {
           maximalStaff: parseInt(this.maximalStaff),
           venueId: this.venueId,
         };
-        facRest.createFacility(facilityObject);
+        facRest.createFacility(facilityObject).then(() => {
+          this.sendRefresh();
+        });
       } else {
         this.$q.notify({
           message: errorMessage,

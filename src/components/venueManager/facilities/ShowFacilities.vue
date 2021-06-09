@@ -15,15 +15,35 @@
 import facRest from "../../../rest/facilityRest";
 export default {
   name: "ShowVenues",
-  props:{
-      venueId:{
-          type: Number,
-          required: true,
-      }
+  props: {
+    venueId: {
+      type: Number,
+      required: true,
+    },
+    refresh: {
+      type: Boolean,
+      required: false,
+    },
+  },
+  watch: {
+    refresh: function (newValue) {
+      this.refreshMethod(newValue);
+    },
   },
   methods: {
+    refreshMethod(value) {
+      if (value == true) {
+        this.getVenues();
+        this.$emit("refreshed");
+      }
+    },
     getVenues() {
-      return facRest.getAllFacilities(this.venue.id);
+      this.facilities = [];
+      facRest.getAllFacilities(this.venueId).then((result) => {
+        for (let fac of result.data) {
+          this.facilities.push(fac);
+        }
+      });
     },
     emitSelected() {
       this.$emit("selectedFacility", this.selected[0]);
