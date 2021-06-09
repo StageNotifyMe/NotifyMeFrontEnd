@@ -46,15 +46,31 @@ export default {
     };
   },
   methods: {
+    sendRefresh() {
+      this.$emit("sendRefresh");
+    },
     postVenue() {
-      venueRest.creatVenue(
-        this.name,
-        this.description,
-        this.streetAndNumber,
-        this.postalCode,
-        this.village,
-        this.country
-      );
+      venueRest
+        .creatVenue(
+          this.name,
+          this.description,
+          this.streetAndNumber,
+          this.postalCode,
+          this.village,
+          this.country
+        )
+        .then(() => {
+          this.sendRefresh();
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$q.notify({
+            message: error.response.data,
+            color: "red",
+            icon: "error",
+            actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
+          });
+        });
     },
   },
 };
