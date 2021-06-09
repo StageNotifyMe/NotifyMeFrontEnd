@@ -36,49 +36,59 @@ export default {
   name: "ApplyToOrganisation",
   data() {
     return {
-      orgname:"",
+      orgname: "",
       options: new Array(),
       orgnameCache: new Array(),
-      organisations: new Array()
+      organisations: new Array(),
     };
   },
   methods: {
     onSubmit() {
-      console.log(this.orgname)
-      organisationRest.applyToOrganisation(this.findOrgIdByName(this.orgname)).then((response) => {
-        console.log(response);
-      }).catch((err)=>{
-        console.log(err)
-        this.errorText = err.response.data;
-          this.seamless = true;
-      });
-    },
-    findOrgIdByName(orgname){
-       return this.organisations.filter(org=>org.name==orgname)[0].id;
-    },
-    getOrganisations(){
-        organisationRest.getOrganisationsLimitedInfo().then(response=>{
-            this.organisations=response.data.organisations;
-            this.fillNamesFromOrgs();
-        }).catch(err=>{
-            console.log(err);
+      organisationRest
+        .applyToOrganisation(this.findOrgIdByName(this.orgname))
+        .then(() => {
+          this.sendRefresh();
         })
-    },
-    fillNamesFromOrgs(){
-        this.organisations.forEach((org) => {
-            this.options.push(org.name);
-            this.orgnameCache.push(org.name);
+        .catch((err) => {
+          console.log(err);
+          this.errorText = err.response.data;
+          this.seamless = true;
         });
     },
-    filterFn (val, update) {
+    sendRefresh() {
+      this.$emit("sendRefresh");
+    },
+    findOrgIdByName(orgname) {
+      return this.organisations.filter((org) => org.name == orgname)[0].id;
+    },
+    getOrganisations() {
+      organisationRest
+        .getOrganisationsLimitedInfo()
+        .then((response) => {
+          this.organisations = response.data.organisations;
+          this.fillNamesFromOrgs();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    fillNamesFromOrgs() {
+      this.organisations.forEach((org) => {
+        this.options.push(org.name);
+        this.orgnameCache.push(org.name);
+      });
+    },
+    filterFn(val, update) {
       update(() => {
-        const needle = val.toLowerCase()
-        this.options = this.orgnameCache.filter(v => v.toLowerCase().indexOf(needle) > -1)
-      })
-    }
+        const needle = val.toLowerCase();
+        this.options = this.orgnameCache.filter(
+          (v) => v.toLowerCase().indexOf(needle) > -1
+        );
+      });
+    },
   },
-  beforeMount(){
-      this.getOrganisations();
-  }
+  beforeMount() {
+    this.getOrganisations();
+  },
 };
 </script>

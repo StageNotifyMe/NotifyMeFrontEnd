@@ -31,7 +31,7 @@ export default {
             }
         })
     },
-    getAvailableLines(){
+    getAvailableLines() {
         return axios.get(RESOURCE_PATH_USER + "lines", {
             headers: {
                 "Authorization": "Bearer " + cookieFunctions.readCookie("access_token"),
@@ -39,7 +39,10 @@ export default {
             }
         })
     },
-    getTeamApplications(){
+    deleteLine(lineId) {
+        return axios.delete(RESOURCE_PATH_VMANAGER + "line?lineId=" + lineId, cookieFunctions.getAuthHeader());
+    },
+    getTeamApplications() {
         return axios.get(RESOURCE_PATH_USER + "teamApplications", {
             headers: {
                 "Authorization": "Bearer " + cookieFunctions.readCookie("access_token"),
@@ -47,8 +50,8 @@ export default {
             }
         })
     },
-    sendTeamApplication(teamId){
-        return axios.post(RESOURCE_PATH_USER + "teamApplication?teamId="+teamId, null, {
+    sendTeamApplication(teamId) {
+        return axios.post(RESOURCE_PATH_USER + "teamApplication?teamId=" + teamId, null, {
             headers: {
                 "Authorization": "Bearer " + cookieFunctions.readCookie("access_token"),
                 "Content-Type": "application/json"

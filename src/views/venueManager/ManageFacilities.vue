@@ -9,9 +9,11 @@
         <ManageFacilities
           :venueId="venueId"
           @selectedFacility="setSelectedFacility"
+          :refresh="refreshTable"
+          @refreshed="sendRefresh"
           class="q-mx-lg"
         />
-        <CreateFacility :venueId="venueId" />
+        <CreateFacility :venueId="venueId" @sendRefresh="sendRefresh"/>
       </div>
     </div>
   </q-page>
@@ -27,12 +29,16 @@ export default {
   data() {
     return {
       venueId: 0,
+      refreshTable: false,
       venue: null,
     };
   },
   methods: {
     setSelectedFacility(facility) {
       console.log(facility);
+    },
+    sendRefresh(){
+      this.refreshTable = !this.refreshTable;
     },
   },
   created() {

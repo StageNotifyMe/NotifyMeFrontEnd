@@ -29,6 +29,7 @@ import LineApplications from "../views/user/LineApplications.vue"
 import ManageTeamApplications from "../views/organisationManager/ManageTeamApplications.vue"
 import AccountSettings from "../views/user/AccountSettings.vue"
 import SystemNotificationsBoard from "../views/admin/SystemNotificationsBoard.vue"
+import Landing from "../views/welcome/Landing.vue"
 
 Vue.use(VueRouter)
 
@@ -74,6 +75,17 @@ const routes = [
   {
     path: '/user/manage/organisations',
     component: ManageUserOrganisations,
+    beforeEnter: (to, from, next) => {
+      if (!cookieFun.hasRole('user')) {
+        next('/unauthorized')
+      } else {
+        next()
+      }
+    },
+  },
+  {
+    path: '/landing',
+    component: Landing,
     beforeEnter: (to, from, next) => {
       if (!cookieFun.hasRole('user')) {
         next('/unauthorized')

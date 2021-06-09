@@ -20,13 +20,32 @@ export default {
       type: String,
       required: true,
     },
+    refresh: {
+      type: Boolean,
+      required: false,
+    },
+  },
+  watch: {
+    refresh: function (newValue) {
+      this.refreshMethod(newValue);
+    },
   },
   methods: {
+    refreshMethod(value) {
+      if (value == true) {
+        this.getEvents();
+        this.$emit("refreshed");
+      }
+    },
     getEvents() {
-      return eventRest.getAllEventsForLineManager(this.userId);
+      eventRest.getAllEventsForLineManager(this.userId).then((result) => {
+        /*for (let event of result.data) {
+        this.events.push(event);
+      }*/
+        this.events = result.data;
+      });
     },
     emitSelected() {
-        console.log(this.selected[0])
       this.$emit("selectedEvent", this.selected[0]);
     },
   },
@@ -57,10 +76,21 @@ export default {
         },
         {
           name: "dateTime",
-          field: "dateTime",
           label: "Date and time",
-          align: "left",
-          sortable: true,
+          field: (row) => {
+            let date = new Date(row.dateTime);
+            return (
+              date.getDate() +
+              "/" +
+              date.getMonth() +
+              "/" +
+              date.getFullYear() +
+              " " +
+              date.getHours() +
+              ":" +
+              date.getMinutes()
+            );
+          },
         },
         {
           name: "status",
@@ -75,13 +105,7 @@ export default {
   },
 
   created() {
-    eventRest.getAllEventsForLineManager(this.userId).then((result) => {
-      /*for (let event of result.data) {
-        this.events.push(event);
-      }*/
-      this.events = result.data;
-      console.log(this.events);
-    });
+    this.getEvents();
   },
 };
 </script>

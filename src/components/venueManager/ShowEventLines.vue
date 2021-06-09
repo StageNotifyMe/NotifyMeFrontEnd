@@ -20,13 +20,33 @@ export default {
       type: Number,
       required: true,
     },
+    refresh: {
+      type: Boolean,
+      required: false,
+    },
+  },
+  watch: {
+    refresh: function (newValue) {
+      this.refreshMethod(newValue);
+    },
   },
   methods: {
-    getVenues() {
-      return lineRest.getAllLinesForEvent(this.eventId);
+    getLines() {
+      this.lines = [];
+      lineRest.getAllLinesForEvent(this.eventId).then((result) => {
+        for (let line of result.data) {
+          this.lines.push(line);
+        }
+      });
     },
     emitSelected() {
       this.$emit("selectedLine", this.selected[0]);
+    },
+    refreshMethod(value) {
+      if (value == true) {
+        this.getLines();
+        this.$emit("refreshed");
+      }
     },
   },
   data() {
@@ -61,11 +81,7 @@ export default {
   },
 
   created() {
-    lineRest.getAllLinesForEvent(this.eventId).then((result) => {
-      for (let line of result.data) {
-        this.lines.push(line);
-      }
-    });
+    this.getLines();
   },
 };
 </script>

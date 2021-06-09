@@ -13,7 +13,7 @@
     </div>
     <div class="row justify-center">
       <div class="column">
-        <q-btn label="Edit line" color="primary" @click="redirectToEdit()" />
+        <q-btn label="Manage organisations for line" icon="group" color="primary" @click="redirectToEdit()" />
       </div>
     </div>
   </q-page>

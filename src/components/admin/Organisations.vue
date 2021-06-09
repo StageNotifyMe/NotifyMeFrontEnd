@@ -1,20 +1,34 @@
 <template>
   <q-page>
-    <CreateOrganisation/>
-    <OrganisationList class="orgList"/>
+    <CreateOrganisation @sendRefresh="sendRefresh" />
+    <OrganisationList
+      class="orgList"
+      :refresh="refreshTable"
+      @refreshed="sendRefresh"
+    />
   </q-page>
 </template>
 <style>
 </style>
 
 <script>
-import CreateOrganisation from './CreateOrganisation.vue';
-import OrganisationList from './OrganisationList.vue';
+import CreateOrganisation from "./CreateOrganisation.vue";
+import OrganisationList from "./OrganisationList.vue";
 export default {
-  components:{
-    CreateOrganisation,
-    OrganisationList
+  data() {
+    return {
+      refreshTable: false,
+    };
   },
-  name: 'Organisations',
-}
+  methods: {
+    sendRefresh() {
+      this.refreshTable = !this.refreshTable;
+    },
+  },
+  components: {
+    CreateOrganisation,
+    OrganisationList,
+  },
+  name: "Organisations",
+};
 </script>

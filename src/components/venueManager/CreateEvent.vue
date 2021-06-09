@@ -54,6 +54,9 @@ import eventRest from "../../rest/eventRest";
 export default {
   name: "CreateEvent",
   methods: {
+    sendRefresh() {
+      this.$emit("sendRefresh");
+    },
     postEvent() {
       let eventObject = {
         title: this.title,
@@ -62,7 +65,20 @@ export default {
         dateTime: this.dateTime,
         venueId: this.selectedVenue.id,
       };
-      eventRest.createEvent(eventObject);
+      eventRest
+        .createEvent(eventObject)
+        .then(() => {
+          this.sendRefresh();
+        })
+        .catch((error) => {
+          console.log(error);
+          this.$q.notify({
+            message: error.response.data,
+            color: "red",
+            icon: "error",
+            actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
+          });
+        });
     },
     setSelectedVenue(selectedVenue) {
       this.selectedVenue = selectedVenue;

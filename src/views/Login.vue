@@ -73,8 +73,7 @@ export default {
 
     //redirects to the welcome page of the first role in the roles array found in the token
     redirect() {
-      let role = cookieFun.getRoles()[0];
-      this.$router.push({ path: "/" + role + "/welcome" });
+      this.$router.push({ path: "/landing" });
     },
 
     redirectToRegister(){

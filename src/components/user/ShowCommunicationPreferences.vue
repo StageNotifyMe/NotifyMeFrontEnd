@@ -20,10 +20,27 @@ export default {
       type: String,
       required: false,
     },
+    refresh: {
+      type: Boolean,
+      required: false,
+    },
+  },
+  watch: {
+    refresh: function (newValue) {
+      this.refreshMethod(newValue);
+    },
   },
   methods: {
+    refreshMethod(value) {
+      if (value == true) {
+        this.getcomPrefs();
+        this.$emit("refreshed");
+      }
+    },
     getcomPrefs() {
-      return comPrefRest.getAllCommunicationPreferences();
+      comPrefRest.getAllCommunicationPreferences().then((result) => {
+        this.comPrefs = result;
+      });
     },
     emitSelected() {
       this.$emit("selectedComPref", this.selected[0]);

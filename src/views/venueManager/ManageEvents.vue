@@ -9,6 +9,8 @@
         :userId="getUserId()"
         @selectedEvent="setSelectedEvent"
         class="q-my-md show-table"
+        :refresh="refreshTable"
+        @refreshed="sendRefresh"
       />
     </div>
     <div
@@ -64,7 +66,7 @@
       />
     </div>
     <div class="row justify-center">
-      <div class="column"><CreateEvent /></div>
+      <div class="column"><CreateEvent @sendRefresh="sendRefresh" /></div>
     </div>
 
     <q-dialog v-model="confirmDelete" persistent>
@@ -104,9 +106,13 @@ export default {
     return {
       selectedEvent: null,
       confirmDelete: false,
+      refreshTable: false,
     };
   },
   methods: {
+    sendRefresh() {
+      this.refreshTable = !this.refreshTable;
+    },
     activateEvent() {
       eventRest.activateEvent(this.selectedEvent.id).catch((error) => {
         console.log(error);

@@ -50,6 +50,9 @@ export default {
     },
   },
   methods: {
+    sendRefresh() {
+      this.$emit("sendRefresh");
+    },
     postLine() {
       let errorMessage = this.validate();
       if (errorMessage == "") {
@@ -59,7 +62,22 @@ export default {
           eventId: this.event.id,
           facilityId: this.selectedFacility.id,
         };
-        lineRest.createLine(lineObject);
+        lineRest
+          .createLine(lineObject)
+          .then(() => {
+            this.sendRefresh();
+          })
+          .catch((error) => {
+            console.log(error);
+            this.$q.notify({
+              message: error.response.data,
+              color: "red",
+              icon: "error",
+              actions: [
+                { label: "Dismiss", color: "white", handler: () => {} },
+              ],
+            });
+          });
       } else {
         this.$q.notify({
           message: errorMessage,
