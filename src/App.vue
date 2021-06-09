@@ -13,7 +13,12 @@
 
         <q-toolbar-title>
           <span class="q-mt-sm">NotifyMe</span>
-          <q-icon name="notifications" @click="notificationDialogue = true"  size="md" class="q-ml-sm"/>
+          <q-icon
+            name="notifications"
+            @click="notificationDialogue = true"
+            size="md"
+            class="q-ml-sm"
+          />
         </q-toolbar-title>
 
         <div>
@@ -36,7 +41,17 @@
       content-class="bg-grey-2"
     >
       <q-list>
-        <q-item-label header>Website navigation</q-item-label>
+        <q-item-label header>Navigation</q-item-label>
+        <q-item clickable @click="redirect('/landing')" v-if="isLoggedIn()">
+          <q-item-section avatar>
+            <q-icon name="home" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Landing page</q-item-label>
+            <q-item-label caption>Go to the landing page</q-item-label>
+          </q-item-section>
+        </q-item>
+
         <q-item clickable @click="redirect('login')" v-if="!isLoggedIn()">
           <q-item-section avatar>
             <q-icon name="account" />
@@ -63,7 +78,7 @@
           v-if="isLoggedIn() && hasRole('user')"
         >
           <q-item-section avatar>
-            <q-icon name="welcome" />
+            <q-icon name="person_outline" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Welcome: user</q-item-label>
@@ -76,7 +91,7 @@
           v-if="isLoggedIn() && hasRole('admin')"
         >
           <q-item-section avatar>
-            <q-icon name="welcome" />
+            <q-icon name="local_police" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Welcome: admin</q-item-label>
@@ -89,7 +104,7 @@
           v-if="isLoggedIn() && hasRole('organisation_manager')"
         >
           <q-item-section avatar>
-            <q-icon name="welcome" />
+            <q-icon name="group" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Welcome: omanager</q-item-label>
@@ -104,7 +119,7 @@
           v-if="isLoggedIn() && hasRole('venue_manager')"
         >
           <q-item-section avatar>
-            <q-icon name="welcome" />
+            <q-icon name="apartment" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Welcome: vmanager</q-item-label>
@@ -117,7 +132,7 @@
           v-if="isLoggedIn() && hasRole('line_manager')"
         >
           <q-item-section avatar>
-            <q-icon name="welcome" />
+            <q-icon name="view_list" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Welcome: lmanager</q-item-label>
@@ -129,7 +144,7 @@
 
     <q-page-container>
       <q-dialog v-if="isLoggedIn()" v-model="notificationDialogue">
-        <notificationsOverview class="q-ma-lg"/>
+        <notificationsOverview class="q-ma-lg" />
       </q-dialog>
       <router-view></router-view>
     </q-page-container>
