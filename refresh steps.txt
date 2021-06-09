@@ -1,0 +1,46 @@
+MASTER
+METHODS:
+sendRefresh(){
+      this.refreshTable = !this.refreshTable;
+    },
+      
+DATA:
+refreshTable: false,
+
+IN TABLE COMPONENT:
+:refresh="refreshTable"
+@refreshed="sendRefresh"
+
+IN CREATING COMPONENT:
+@sendRefresh="sendRefresh"
+
+
+
+CREATING COMPONENT:
+METHODS:
+sendRefresh() { // CALL THIS FUNCTION AFTER POSTING/PUTTING/DELETING
+      this.$emit("sendRefresh");
+    },
+
+
+TABLE COMPONENT:
+PROPS:
+refresh: {
+      type: Boolean,
+      required: false,
+    },
+
+METHODS:
+refreshMethod(value) {
+      if (value == true) {
+        this.getVenues(); // REPLACE THIS BY AN APPROPRIATE LOADING METHOD
+        this.$emit("refreshed");
+      }
+    },
+
+WATCH:
+  watch: {
+    refresh: function (newValue) {
+      this.refreshMethod(newValue);
+    },
+  },
