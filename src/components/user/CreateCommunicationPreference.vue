@@ -40,24 +40,31 @@ export default {
     };
   },
   methods: {
+    sendRefresh() {
+      this.$emit("sendRefresh");
+    },
     createComPref() {
       const body = {
         userId: JSON.parse(cookieFunctions.getCookie("user_info")).id,
         isActive: true,
         isDefault: false,
         isUrgent: false,
-        communicationStrategy: this.options[
-          this.simplifiedOptions.findIndex((i) => i == this.selectedStrategy)
-        ],
+        communicationStrategy:
+          this.options[
+            this.simplifiedOptions.findIndex((i) => i == this.selectedStrategy)
+          ],
       };
-      comPrefRest.createCommunicationPreference(body).catch((error) => {
-        this.$q.notify({
-          message: error.response.data,
-          color: "red",
-          icon: "error",
-          actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
+      comPrefRest
+        .createCommunicationPreference(body)
+        .then(() => this.sendRefresh())
+        .catch((error) => {
+          this.$q.notify({
+            message: error.response.data,
+            color: "red",
+            icon: "error",
+            actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
+          });
         });
-      });
     },
   },
 };

@@ -1,11 +1,16 @@
 <template>
   <q-page>
-    <BreadCrumbs :locations="['User','Manage','Communication preferences']"/>
+    <BreadCrumbs :locations="['User', 'Manage', 'Communication preferences']" />
     <div class="row justify-center q-ma-lg">
       <div class="text-h3">Communication Preferences</div>
     </div>
     <div class="row justify-center">
-      <ShowComPref @selectedComPref="setSelectedComPref"  class="show-table"/>
+      <ShowComPref
+        @selectedComPref="setSelectedComPref"
+        class="show-table"
+        :refresh="refreshTable"
+        @refreshed="sendRefresh"
+      />
     </div>
     <div class="row justify-center">
       <div
@@ -91,7 +96,7 @@
       </div>
     </div>
     <div class="row justify-center">
-      <createCommunicationPreference />
+      <createCommunicationPreference @sendRefresh="sendRefresh" />
     </div>
   </q-page>
 </template>
@@ -101,16 +106,21 @@ import ShowComPref from "../../components/user/ShowCommunicationPreferences";
 import cookieFunctions from "../../javascript/cookieFunctions";
 import communicationPreferencesRest from "../../rest/communicationPreferencesRest";
 import createCommunicationPreference from "../../components/user/CreateCommunicationPreference";
-import BreadCrumbs from "../../components/BreadCrumbs"
+import BreadCrumbs from "../../components/BreadCrumbs";
 
 export default {
   name: "ManageCommunicationPreferences",
   data() {
     return {
       selectedComPref: null,
+      refreshTable: false,
     };
   },
   methods: {
+    sendRefresh() {
+      this.refreshTable = !this.refreshTable;
+    },
+
     setSelectedComPref(selected) {
       this.selectedComPref = selected;
     },
