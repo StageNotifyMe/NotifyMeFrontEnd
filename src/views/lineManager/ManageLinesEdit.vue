@@ -49,7 +49,7 @@
     >
       <div class="column q-pa-md">
         <q-btn
-          label="Assing this organisation"
+          label="Assign this organisation"
           color="primary"
           unelevated
           icon="add"

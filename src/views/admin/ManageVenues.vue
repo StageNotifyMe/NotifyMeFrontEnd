@@ -14,7 +14,8 @@
     </div>
     <div class="row justify-center">
       <q-btn
-        label="Edit venue"
+        label="Edit venue managers"
+        icon="person"
         color="primary"
         unelevated
         @click="redirectToEditVenue()"

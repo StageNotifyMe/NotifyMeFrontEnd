@@ -47,9 +47,6 @@
           @click="redirectFacilityMagmt()"
         />
       </div>
-      <div class="column q-mx-md">
-        <q-btn unelevated color="primary"> DUMMY </q-btn>
-      </div>
     </div>
   </q-page>
 </template>

@@ -139,8 +139,8 @@ export default {
     filterMethod() {
       function filterFunction(obj, filterText) {
         return (
-          obj.messageTitle.includes(filterText) ||
-          obj.messageText.includes(filterText)
+          obj.messageTitle.toLowerCase().includes(filterText.toLowerCase()) ||
+          obj.messageText.toLowerCase().includes(filterText.toLowerCase())
         );
       }
       const newArray = this.cachedNotifications.filter((obj) =>
