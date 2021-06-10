@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="row justify-center">
-      <h2>User - Home</h2>
+      <div class="text-h3 q-my-md">User - Home</div>
     </div>
     <div class="row justify-center q-ma-md">
       <NavCard

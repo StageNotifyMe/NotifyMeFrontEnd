@@ -1,42 +1,25 @@
 <template>
   <q-page>
     <div class="row justify-center">
-      <h2>Venue manager - Home</h2>
+      <div class="text-h3 q-my-md">Venue manager - Home</div>
     </div>
 
     <div class="row justify-center q-ma-md">
-      <div class="column col-3 q-ma-md">
-        <q-card dark bordered class="bg-secondary my-card">
-          <q-card-section class="my-card-title">
-            <div class="row">
-              <div class="column col-2">
-                <q-icon name="event" size="lg" />
-              </div>
-              <div class="column col-9">
-                <div class="text-h6">Events</div>
-                <div class="text-subtitle2">
-                  Here you can create and manage events for your venues.
-                </div>
-              </div>
-            </div>
-          </q-card-section>
-          <q-separator dark inset />
-          <q-card-section>
-            <q-btn
-              color="deep-purple-5"
-              text-color="white"
-              @click="redirect('manage/events')"
-              icon-right="edit"
-              label="Manage events"
-              unelevated
-            ></q-btn>
-          </q-card-section>
-        </q-card>
-      </div>
+      <NavCard
+        :title="'Events'"
+        :description="'Here you can create and manage events for your venues.'"
+        :icon="'event'"
+        :redirectUrl="'/vmanager/manage/events'"
+        :buttonText="'Manage events'"
+        :buttonIcon="'edit'"
+      />
     </div>
 
     <div class="row justify-center">
-      <ShowVenues class="q-ma-lg show-table" @selectedVenue="setSelectedVenue" />
+      <ShowVenues
+        class="q-ma-lg show-table"
+        @selectedVenue="setSelectedVenue"
+      />
     </div>
     <div class="row justify-center">
       <div class="column q-mx-md">
@@ -54,6 +37,8 @@
 <script>
 import cookieFun from "../../javascript/cookieFunctions";
 import ShowVenues from "../../components/venueManager/ShowVenues";
+import NavCard from "../../components/NavCard.vue";
+
 export default {
   data() {
     return {
@@ -84,6 +69,7 @@ export default {
   },
   components: {
     ShowVenues,
+    NavCard,
   },
 };
 </script>

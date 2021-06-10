@@ -31,7 +31,7 @@
 
 <style scoped>
 .my-card {
-  height: 15rem;
+  height: 100%;
 }
 .my-card-title {
   height: 60%;
