@@ -26,7 +26,7 @@
         <div class="row justify-center">
           <div class="q-pa-md">
             <q-table
-            style="width: 105em"
+            style="width: "
               flat
               class="my-sticky-virtscroll-table"
               virtual-scroll
