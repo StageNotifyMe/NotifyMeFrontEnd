@@ -5,7 +5,7 @@
         <h5 class="text-h5 q-my-md">NotifyMe registration</h5>
       </div>
       <div class="row" >
-        <q-card square bordered class="q-pa-lg shadow-1">
+        <q-card square bordered class="q-pa-lg shadow-1 registerCard">
           <q-card-section>
             <q-form class="q-gutter-md">
               <q-input
@@ -113,10 +113,11 @@
   ></q-page>
 </template>
 
-
-<style>
-.q-card {
-  width: 400 em;
+<style scoped>
+.registerCard {
+  width: 60vw;
+  max-width: 50em;
+  min-height: 20em;
 }
 </style>
 
