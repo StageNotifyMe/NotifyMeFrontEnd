@@ -15,7 +15,7 @@
         </div>
       </q-card-section>
       <q-separator dark inset class="q-my-sm" />
-      <q-card-section>
+      <q-card-section class="text-center">
         <q-btn
           color="deep-purple-5"
           text-color="white"

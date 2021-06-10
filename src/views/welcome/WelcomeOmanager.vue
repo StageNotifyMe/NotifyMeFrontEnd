@@ -7,7 +7,7 @@
     <div class="row justify-center q-ma-md">
       <NavCard
         :title="'Organisations'"
-        :description="' Here you can manage applications for your assigned organisations.'"
+        :description="'Here you can manage applications for your assigned organisations.'"
         :icon="'groups'"
         :redirectUrl="'/omanager/manage/organisations'"
         :buttonText="'Manage organisations'"
@@ -16,7 +16,7 @@
 
       <NavCard
         :title="'Team applications'"
-        :description="' Here you can manage team applications for your assigned organisations.'"
+        :description="'Here you can manage team applications for your assigned organisations.'"
         :icon="'person_add_alt'"
         :redirectUrl="'/omanager/manage/teamApplications'"
         :buttonText="'Team applications for events'"
@@ -25,16 +25,6 @@
     </div>
   </q-page>
 </template>
-
-
-<style scoped>
-.my-card {
-  height: 15em;
-}
-.my-card-title {
-  height: 60%;
-}
-</style>
 
 <script>
 import cookieFun from "../../javascript/cookieFunctions";

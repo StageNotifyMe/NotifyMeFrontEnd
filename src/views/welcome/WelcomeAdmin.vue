@@ -35,15 +35,6 @@
   </q-page>
 </template>
 
-<style scoped>
-.my-card {
-  height: 15em;
-}
-.my-card-title {
-  height: 60%;
-}
-</style>
-
 <script>
 import cookieFun from "../../javascript/cookieFunctions";
 import NavCard from "../../components/NavCard.vue";

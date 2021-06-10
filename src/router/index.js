@@ -106,7 +106,7 @@ const routes = [
     },
   },
   {
-    path: '/user/availableLines',
+    path: '/user/manage/availableLines',
     component: LineApplications,
     beforeEnter: (to, from, next) => {
       if (!cookieFun.hasRole('user')) {
