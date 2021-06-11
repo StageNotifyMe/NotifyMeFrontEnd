@@ -1,103 +1,43 @@
 <template>
   <q-page>
     <div class="row justify-center">
-      <h2>Admin - Home</h2>
+      <div class="text-h3 q-my-md">Admin - Home</div>
     </div>
 
     <div class="row justify-center q-ma-md">
-      <div class="column col-3 q-ma-md">
-        <q-card dark bordered class="bg-secondary my-card">
-          <q-card-section class="my-card-title">
-            <div class="row">
-              <div class="column col-2">
-                <q-icon name="groups" size="lg"/>
-              </div>
-              <div class="column col-9">
-                <div class="text-h6">Organisations</div>
-                <div class="text-subtitle2">Here you can create new organisations and assign managers to existing organisations.</div>
-              </div>
-            </div>
-          </q-card-section>
-          <q-separator dark inset />
-          <q-card-section>
-            <q-btn
-              color="deep-purple-5"
-              text-color="white"
-              @click="redirectToManage('organisations')"
-              icon-right="edit"
-              label="Manage organisations"
-              unelevated
-            ></q-btn>
-          </q-card-section>
-        </q-card>
-      </div>
+      <NavCard
+        :title="'Organisations'"
+        :description="'Here you can create new organisations and assign managers to existing organisations.'"
+        :icon="'groups'"
+        :redirectUrl="'/admin/manage/organisations'"
+        :buttonText="'manage organisations'"
+        :buttonIcon="'edit'"
+      />
 
-      <div class="column col-3 q-ma-md">
-        <q-card dark bordered class="bg-secondary my-card">
-          <q-card-section class="my-card-title">
-            <div class="row">
-              <div class="column col-2">
-                <q-icon name="location_on" size="lg"/>
-              </div>
-              <div class="column col-9">
-                <div class="text-h6">Venues</div>
-                <div class="text-subtitle2">Here you can create new venues and assign managers to them.</div>
-              </div>
-            </div>
-          </q-card-section>
-          <q-separator dark inset />
-          <q-card-section>
-            <q-btn
-              color="deep-purple-5"
-              @click="redirectToManage('venues')"
-              icon-right="edit"
-              label="Manage venues"
-              unelevated
-            ></q-btn>
-          </q-card-section>
-        </q-card>
-      </div>
+      <NavCard
+        :title="'Venues'"
+        :description="'Here you can create new venues and assign managers to them.'"
+        :icon="'location_on'"
+        :redirectUrl="'/admin/manage/venues'"
+        :buttonText="'manage venues'"
+        :buttonIcon="'edit'"
+      />
 
-      <div class="column col-3 q-ma-md">
-        <q-card dark bordered class="bg-secondary my-card">
-          <q-card-section class="my-card-title">
-            <div class="row">
-              <div class="column col-2">
-                <q-icon name="admin_panel_settings" size="lg"/>
-              </div>
-              <div class="column col-9">
-                <div class="text-h6">Administration</div>
-                <div class="text-subtitle2">Here you can look at the notification logs.</div>
-              </div>
-            </div>
-          </q-card-section>
-          <q-separator dark inset />
-          <q-card-section>
-            <q-btn
-              color="deep-purple-5"
-              @click="redirectTo('/admin/system/notifications')"
-              icon-right="feed"
-              label="Notifications log"
-              unelevated
-            ></q-btn>
-          </q-card-section>
-        </q-card>
-      </div>
+      <NavCard
+        :title="'Administration'"
+        :description="'Here you can look at the notification logs.'"
+        :icon="'admin_panel_settings'"
+        :redirectUrl="'/admin/system/notifications'"
+        :buttonText="'notifications log'"
+        :buttonIcon="'feed'"
+      />
     </div>
   </q-page>
 </template>
 
-<style scoped>
-.my-card{
-  height: 15em;
-}
-.my-card-title{
-  height: 60%;
-}
-</style>
-
 <script>
 import cookieFun from "../../javascript/cookieFunctions";
+import NavCard from "../../components/NavCard.vue";
 
 export default {
   methods: {
@@ -110,6 +50,9 @@ export default {
     redirectTo(location) {
       this.$router.push(location);
     },
+  },
+  components: {
+    NavCard,
   },
 };
 </script>

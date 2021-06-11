@@ -23,5 +23,8 @@ export default {
     },
     getAllNotifications() {
         return axios.get(RESOURCE_PATH_ADMIN + "notifications", cookieFunctions.getAuthHeaderJSON());
-    }
+    },
+    hideNotification(notificationId) {
+        return axios.put(RESOURCE_PATH + "notification/hide?notificationId=" + notificationId, cookieFunctions.getAuthHeader());
+    },
 }

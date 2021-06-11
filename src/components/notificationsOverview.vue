@@ -1,15 +1,36 @@
 <template>
   <div class="overview-background">
-    <h2>Notifications</h2>
-    <q-list bordered v-if="this.notifications != null" >
+    <div class="row justify-center bg-deep-purple-5 text-white">
+      <div class="text-h3 q-my-md">Notifications</div>
+    </div>
+    <q-list bordered v-if="this.notifications != null">
       <q-card
         v-for="notification in this.notifications"
         v-bind:key="notification.id"
       >
         <q-card-section style="width: 100%; background: white">
-          <div class="text-h7">{{ notification.message.title }}</div>
-          <div class="text-caption text-grey">
-            {{ notification.message.text }}
+          <div class="row">
+            <div class="column col-10">
+              <div class="row justify-left">
+                <div class="text-subtitle2">
+                  <b>{{ notification.message.title }}</b>
+                </div>
+              </div>
+              <div class="row justify-left">
+                <div class="text-body2">
+                  {{ notification.message.text }}
+                </div>
+              </div>
+            </div>
+            <div class="column col-1">
+              <q-btn
+                rounded
+                unelevated
+                color="secondary"
+                icon="delete"
+                @click="hideNotification(notification)"
+              />
+            </div>
           </div>
         </q-card-section>
       </q-card>
@@ -34,11 +55,24 @@ export default {
     };
   },
   methods: {
+    hideNotification(notification) {
+      notificationRest.hideNotification(notification.id)
+      .then(()=>{
+        this.getNotifications();
+      })
+      .catch((err) =>
+        this.$q.notify({
+          message: err,
+          color: "red",
+          icon: "warning",
+          actions: [{ label: "Dismiss", color: "white", handler: () => {} }],
+        })
+      );
+    },
     getNotifications() {
       notificationRest
         .getNotifications()
         .then((response) => {
-          console.log(response);
           this.notifications = response.data;
           this.notifications.sort((a, b) => b.id - a.id);
         })

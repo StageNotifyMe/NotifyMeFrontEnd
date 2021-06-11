@@ -26,7 +26,7 @@
         <div class="row justify-center">
           <div class="q-pa-md">
             <q-table
-            style="width: 105em"
+              style="width: 105em"
               flat
               class="my-sticky-virtscroll-table"
               virtual-scroll
@@ -70,7 +70,7 @@ export default {
             return (
               date.getDate() +
               "/" +
-              date.getMonth() +
+              (date.getMonth() + 1) +
               "/" +
               date.getFullYear() +
               " " +
@@ -123,8 +123,11 @@ export default {
       notificationRest
         .getAllNotifications()
         .then((result) => {
-          this.cachedNotifications = result.data;
-          this.notifications = result.data;
+          const sortedData = result.data.sort((d1, d2) => {
+            return d1.id - d2.id;
+          });
+          this.cachedNotifications = sortedData;
+          this.notifications = sortedData;
         })
         .catch((error) => {
           console.log(error);
