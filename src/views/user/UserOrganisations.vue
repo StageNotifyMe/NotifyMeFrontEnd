@@ -10,10 +10,10 @@
       <q-separator inset />
       <q-card-section class="large-card-section vertical-bottom">
         <div class="row justify-center" style="height: 100%">
-          <div class="column col-4 justify-center">
+          <div class="column col-lg-4 col-sm-12 justify-center">
             <ApplyToOrganisation @sendRefresh="sendRefresh" />
           </div>
-          <div class="column col-6 justify-center">
+          <div class="column col-lg-6 col-sm-12 justify-center">
             <ApplicationList :refresh="refreshTable" @refreshed="sendRefresh" />
           </div>
         </div>
