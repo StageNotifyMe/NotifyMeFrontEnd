@@ -38,7 +38,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      content-class="bg-grey-2"
+      content-class="bg-grey-3"
     >
       <q-list>
         <q-item-label header>Navigation</q-item-label>
